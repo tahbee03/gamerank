@@ -1,0 +1,58 @@
+.navbar {
+    background-color: #1f1f1f;
+    height: 10vh;
+    margin-bottom: 5px;
+}
+
+.logo {
+    height: 75%;
+    padding: 10px;
+}
+
+.search {
+    display: flex;
+}
+
+.search-input {
+    height: 2rem;
+}
+
+.search-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    width: 2rem;
+    color: #f5f5f5;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.search-btn:hover {
+    color: #ebe770;
+}
+
+.buttons {
+    margin: 15px;
+}
+
+.buttons button {
+    transition: 0.25s;
+    background-color: #f5f5f5;
+}
+
+.buttons .login-btn {
+    margin-right: 10px;
+}
+
+.buttons .register-btn {
+    margin-left: 10px;
+}
+
+.buttons button:hover {
+    box-shadow: 0px 0px 10px 1px #f5f5f5;
+}
+
+.buttons button:active {
+    box-shadow: 0px 0px 10px 5px #ebe770;
+}
