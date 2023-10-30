@@ -7,6 +7,7 @@ import {Route, Routes } from 'react-router-dom';
 
 
 function App() {
+  console.log("branch test");
   return (
     <>
       <Routes>
