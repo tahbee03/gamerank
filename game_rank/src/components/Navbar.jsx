@@ -15,6 +15,11 @@ function Navbar() {
           search
         </span>
       </div>
+      <div className ="buttons">
+        <button className="genres-btn">Genres</button>
+        <button className="lists-btn">Lists</button>
+        <button className="discounts-btn">Discounts</button>
+      </div>
       <div className="buttons">
         <button className="login-btn">Login</button>
         <button className="register-btn">Register</button>
