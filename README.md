@@ -4,4 +4,9 @@ Group Name: Katana Koders
 
 ## Description
 
-
+**How to push code into the repository?**
+git checkout -b "your branch name" master
+git add .
+git push --set-upstream origin "your branch name"
+git checkout main
+git branch -d "your branch name"
