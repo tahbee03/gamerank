@@ -17,7 +17,7 @@ function Navbar() {
   return (
 
     <div className="navbar">
-      <img src="/gamerank_logo_white.png" alt="logo" className="logo" />
+      <a href="/" className="logo"><img src="/gamerank_logo_white.png" alt="Logo" className="logo" /></a>
       <div className="search">
         <input
           className="search-input"
@@ -32,6 +32,8 @@ function Navbar() {
       <div className="buttons">
         <button onClick={() => setModalShow(true)} className="login-btn">Login</button>
         <button onClick={()=> setModalShow_two(true)}className="register-btn">Register</button>
+        {/* temporary profile button */}
+        <button onClick={() => window.location.href="/Profile"}className="profile-btn">Profile</button>
       </div>
       <Login
         show={modalShow}
