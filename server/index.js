@@ -1,5 +1,7 @@
+require("dotenv").config(); // Connect environment variables from .env file to process.env object
 const express = require("express");
 const users = require("./views/user_view"); // Include API routes for users 
+const mongoose = require("mongoose"); // Include Mongoose library
 
 const app = express();
 
@@ -10,9 +12,23 @@ app.get("/", (req, res) => {
     res.send("Welcome to Gamerank API!");
 });
 
-app.listen(4000, () => {
-    console.log("Running back-end server on port 4000...");
-});
+// app.listen(4000, () => {
+//     console.log("Running back-end server on port 4000...");
+// });
 
-// NOTE: Run the back-end by changing the directory to gamerank/server/ and typing the command `npm start`.
-// (Will be mentioned in README.md later.)
+// Connect to database
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        console.log("Connected to database!");
+
+        if(process.env.PORT) {
+            // Listen for requests (after connecting to database)
+            app.listen(process.env.PORT, () => {
+                console.log(`Running back-end server on port ${process.env.PORT}...`);
+            });
+        }
+    })
+    .catch((err) => {
+        // Print errors (if any)
+        console.log(err);
+    });
