@@ -1,0 +1,9 @@
+.carousel-image > img{
+    width: 100%;
+}
+
+.carousel{
+    padding: 15px;
+    width: 800px;
+    margin: 0 auto; /*Centers Carousel*/
+}
