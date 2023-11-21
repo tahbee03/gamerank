@@ -3,15 +3,20 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import '../styles/Featured.css'
 
-export default function AutoLayoutExample(){
+export default function Featured(){
     return (
         <Container>
             <Row>
-                <Col>1 of 5</Col>
-                <Col>2 of 5</Col>
-                <Col>3 of 5</Col>
-                <Col>4 of 5</Col>
-                <Col>5 of 5</Col>
+                <Col>Game 1</Col>
+                <Col>Game 2</Col>
+                <Col>Game 3</Col>
+                <Col>Game 4</Col>
+                <Col>Game 5</Col>
+                <Col>Game 6</Col>
+                <Col>Game 7</Col>
+                <Col>Game 8</Col>
+                <Col>Game 9</Col>
+                <Col>Game 10</Col>
             </Row>
         </Container>
     );
