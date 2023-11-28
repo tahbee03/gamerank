@@ -12,7 +12,7 @@ function Profile() {
                 <div className="edit-btn"><button>Edit Profile</button></div>
                 </div>
                 <div className="bar">
-                    hi
+                    test
                 </div>
                 
             </div>
