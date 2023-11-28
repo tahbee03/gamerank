@@ -2,10 +2,12 @@ require("dotenv").config(); // Connect environment variables from .env file to p
 const express = require("express");
 const users = require("./views/user_view"); // Include API routes for users 
 const mongoose = require("mongoose"); // Include Mongoose library
-// const port = import.meta.env.VITE_PORT;
-// const uri = import.meta.env.VITE_MONGO_URI;
+const cors = require("cors");
 
 const app = express();
+
+// Allows endpoints to be reached by front-end
+app.use(cors());
 
 // Middleware required to parse request body
 app.use(express.json());

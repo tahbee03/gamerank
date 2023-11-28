@@ -33,27 +33,31 @@ const getUserByID = async (req, res) => {
 
 // Login functionality
 const userLogin = async (req, res) => {
+    // TODO: Revise with legit authentication
     const {email, password} = req.body;
-    console.log(req.body);
 
     try {
         const user = await User.findOne({email});
         
         if(!user) res.status(404).json({error: "No such user!"});
-        else if(password != user.password) res.status(404).json({error: "Incorrect password!"});
-        else res.status(200).json({msg: "User successfully logged in!"});
+        else if(password != user.password) res.status(400).json({error: "Incorrect password!"});
+        else res.status(200).json({username: user.username, email: user.email});
     } catch(error) {
         console.log(error.message);
-        res.status(500).json({error});
+        res.status(500).json({error: error.message});
     }
 };
 
 // Sign up functionality
 const userRegister = async (req, res) => {
+    // TODO: Revise with legit authentication
     const {username, email, password} = req.body;
 
     try {
-        await User.create({
+        const match = await User.findOne({email});
+        if (match) res.status(400).json({error: "Email already in use!"});
+
+        const user = await User.create({
             username,
             email,
             password,
@@ -61,10 +65,10 @@ const userRegister = async (req, res) => {
             role: "gamer"
         });
 
-        res.status(200).json({msg: "User successfully created!"});
+        res.status(200).json({username: user.username, email: user.email});
     } catch(error) {
         console.log(error.message);
-        res.status(500).json({error});
+        res.status(500).json({error: error.message});
     }
 };
 
