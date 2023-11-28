@@ -1,19 +1,21 @@
 import './Navbar.css'
-// import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Login from './Login';
-import Signup from './SignUp';
+import Signup from './Signup';
 
 function Navbar() {
   const [modalShow, setModalShow] = useState(false);
-  const [modalShow_two,setModalShow_two]= useState(false);
-  // const navigate= useNavigate();
-  // function handleLogin(){
-  //   navigate('/login');
-  // }
-  // function handleSignup(){
-  //   navigate('/signup')
-  // }
+  const [modalShow_two, setModalShow_two] = useState(false);
+  const user = sessionStorage.getItem("user");
+
+  const navigate = useNavigate(); // Needed to redirect to another page
+
+  function handleLogout() {
+    sessionStorage.removeItem("user"); // Removes user from browser session storage
+    navigate("/");
+  }
+
   return (
 
     <div className="navbar">
@@ -30,18 +32,27 @@ function Navbar() {
         </span>
       </div>
       <div className="buttons">
-        <button onClick={() => setModalShow(true)} className="login-btn">Login</button>
-        <button onClick={()=> setModalShow_two(true)}className="register-btn">Register</button>
-        {/* temporary profile button */}
-        <button onClick={() => window.location.href="/Profile"}className="profile-btn">Profile</button>
+
+        {(user) && (
+          <>
+            <button onClick={() => window.location.href = "/Profile"} className="profile-btn">Profile</button>
+            <button onClick={handleLogout} className="logout-btn">Logout</button>
+          </>
+        )}
+        {(!user) && (
+          <>
+            <button onClick={() => setModalShow(true)} className="login-btn">Login</button>
+            <button onClick={() => setModalShow_two(true)} className="register-btn">Register</button>
+          </>
+        )}
       </div>
       <Login
         show={modalShow}
-        onHide={()=>setModalShow(false)}
+        onHide={() => setModalShow(false)}
       />
       <Signup
         show={modalShow_two}
-        onHide={()=>setModalShow_two(false)}
+        onHide={() => setModalShow_two(false)}
       />
     </div>
   )
