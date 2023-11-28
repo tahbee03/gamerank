@@ -1,11 +1,11 @@
 .profile {
-    position: absolute;
-    left: 0px;
     width: 25%;
     height: 45%;
-    /* border: 3px solid #73AD21; */
+    border: 3px solid #73AD21;
     padding: 10px;
     padding-top: 50px;
+    display: inline-block;
+
 }
 
 .profile img {
@@ -28,4 +28,28 @@
 .profile .edit-btn {
     text-align: center;
     padding-top: 15px;
+}
+
+.bar {
+    display: inline-block;
+    border: 1px solid red;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+.divider {
+    border: 1px solid;
+}
+
+.activity {
+    margin: auto;
+    width: 95%;
+    /* border: 3px solid #73AD21; */
+    padding: 10px;
+    padding-top: 50px;
+}
+
+.rct-act {
+    text-align:left;
+    margin-bottom: -15px;
 }
