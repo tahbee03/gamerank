@@ -1,8 +1,8 @@
 import './Navbar.css'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import Login from './Login';
-import Signup from './Signup';
+import Login from '../Login/Login.jsx';
+import Register from '../Register/Register';
 
 function Navbar() {
   const [modalShow, setModalShow] = useState(false);
@@ -50,7 +50,7 @@ function Navbar() {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-      <Signup
+      <Register
         show={modalShow_two}
         onHide={() => setModalShow_two(false)}
       />
