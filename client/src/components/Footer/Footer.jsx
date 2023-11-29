@@ -1,4 +1,4 @@
-import '../styles/Footer.css';
+import './Footer.css';
 // import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 
 export default function Footer() {
