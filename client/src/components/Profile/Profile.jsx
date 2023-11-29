@@ -1,10 +1,11 @@
 import Navbar from '../Navbar.jsx';
 import './Profile.css';
 import ThemeProvider from 'react-bootstrap/ThemeProvider'
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import { BsStar } from "react-icons/bs";
+// import { BsStarHalf } from "react-icons/bs";
+// import { BsStarFill } from "react-icons/bs";
 
 
 function Profile() {
@@ -30,15 +31,13 @@ function Profile() {
                 <div className="section">
                 <div className="section-title">Recent Activity</div>
                 <hr className="divider" />
-                <Container>
                     <Row className="rct-act">
-                        <Col className="act"><img src="default-avatar.jpg" alt="Avatar"></img></Col>
-                        <Col className="act"><img src="default-avatar.jpg" alt="Avatar"></img></Col>
-                        <Col className="act"><img src="default-avatar.jpg" alt="Avatar"></img></Col>
-                        <Col className="act"><img src="default-avatar.jpg" alt="Avatar"></img></Col>
-                        <Col className="act"><img src="default-avatar.jpg" alt="Avatar"></img></Col>
+                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><BsStar /><BsStar /><BsStar /><BsStar /><BsStar /></Col>
+                        <Col className="act"><img src="asdkasdaergo" alt="Activity"></img><BsStar /><BsStar /><BsStar /><BsStar /><BsStar /></Col>
+                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><BsStar /><BsStar /><BsStar /><BsStar /><BsStar /></Col>
+                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><BsStar /><BsStar /><BsStar /><BsStar /><BsStar /></Col>
+                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><BsStar /><BsStar /><BsStar /><BsStar /><BsStar /></Col>
                     </Row>
-                </Container>
                 </div>
 
                 <div className="section">
@@ -52,7 +51,6 @@ function Profile() {
                 </div>
             </div>
         </ThemeProvider>
-        
     )
 }
 

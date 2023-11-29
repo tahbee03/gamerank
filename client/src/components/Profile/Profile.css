@@ -44,7 +44,6 @@
 .section {
     margin: auto;
     width: 95%;
-    /* border: 3px solid #73AD21; */
     padding: 10px;
     padding-top: 50px;
 }
@@ -57,19 +56,25 @@
 .rct-act {
     border: 2px solid black;
     display: flex;
+    
 }
 
 .act {
-    border: 2px solid #73AD21;
+    border: 2px solid green;
     margin: 0px 15px;
-    width: 50%;
+    width: 150px;
+    height: 300px;
     
 }
 
 .act img {
+    border: 2px solid red;
+    background-color: lightgrey;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 100px;
-    height: 300px;   
+    margin-bottom: 5px;
+    width: 100%;
+    height: 90%;
+
 }
