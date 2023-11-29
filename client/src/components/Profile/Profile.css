@@ -41,7 +41,7 @@
     border: 1px solid;
 }
 
-.activity {
+.section {
     margin: auto;
     width: 95%;
     /* border: 3px solid #73AD21; */
@@ -49,7 +49,27 @@
     padding-top: 50px;
 }
 
-.rct-act {
+.section-title {
     text-align:left;
     margin-bottom: -15px;
+}
+
+.rct-act {
+    border: 2px solid black;
+    display: flex;
+}
+
+.act {
+    border: 2px solid #73AD21;
+    margin: 0px 15px;
+    width: 50%;
+    
+}
+
+.act img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    height: 300px;   
 }

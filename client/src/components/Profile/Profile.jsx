@@ -1,29 +1,57 @@
 import Navbar from '../Navbar.jsx';
 import './Profile.css';
+import ThemeProvider from 'react-bootstrap/ThemeProvider'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+
 
 function Profile() {
     return (
-        <div>
-            <Navbar/>
+        <ThemeProvider
+            breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
+            minBreakpoint="xxs"
+        >
             <div>
-                <div className="profile">
-                <img src="default-avatar.jpg" alt="Avatar"></img>
-                <div className="name">Name</div>
-                <div className="edit-btn"><button>Edit Profile</button></div>
+                <Navbar/>
+                <div>
+                    <div className="profile">
+                    <img src="default-avatar.jpg" alt="Avatar"></img>
+                    <div className="name">Name</div>
+                    <div className="edit-btn"><button>Edit Profile</button></div>
+                    </div>
+                    <div className="bar">
+                        test
+                    </div>
+                    
                 </div>
-                <div className="bar">
-                    test
+
+                <div className="section">
+                <div className="section-title">Recent Activity</div>
+                <hr className="divider" />
+                <Container>
+                    <Row className="rct-act">
+                        <Col className="act"><img src="default-avatar.jpg" alt="Avatar"></img></Col>
+                        <Col className="act"><img src="default-avatar.jpg" alt="Avatar"></img></Col>
+                        <Col className="act"><img src="default-avatar.jpg" alt="Avatar"></img></Col>
+                        <Col className="act"><img src="default-avatar.jpg" alt="Avatar"></img></Col>
+                        <Col className="act"><img src="default-avatar.jpg" alt="Avatar"></img></Col>
+                    </Row>
+                </Container>
                 </div>
-                
-            </div>
 
-            <div className="activity">
-            <div className="rct-act">Recent Activity</div>
-            <hr className="divider" />
-            </div>
-            
+                <div className="section">
+                <div className="section-title">Recent Rankings</div>
+                <hr className="divider" />
+                </div>            
 
-        </div>
+                <div className="section">
+                <div className="section-title">Recent Lists</div>
+                <hr className="divider" />
+                </div>
+            </div>
+        </ThemeProvider>
         
     )
 }
