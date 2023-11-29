@@ -1,20 +1,43 @@
-// import { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom"; // useNavigate()
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import ModalTitle from "react-bootstrap/esm/ModalTitle";
 import "../styles/Custom.css";
+const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server via environment variable
 
 function Login(props) {
-    function showPassword(){
-        var x = document.getElementById("inputPassword5");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // Needed to redirect to another page
+
+  function showPassword() {
+    var x = document.getElementById("inputPassword5");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
     }
+  }
+
+  async function handleSubmit() {
+    const response = await fetch(`${server}users/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await response.json();
+
+    if (!response.ok) console.log(data.error);
+    else {
+      sessionStorage.setItem("user", JSON.stringify(data)); // Stores user in browser session storage
+      navigate("/Profile");
+    }
+
+    // TODO: Modify so error messages are displayed on the front-end
+  }
 
   return (
     <Modal
@@ -37,6 +60,7 @@ function Login(props) {
             aria-label="Small"
             placeholder="Email"
             aria-describedby="inputGroup-sizing-sm"
+            onChange={(e) => setEmail(e.target.value)}
           />
         </InputGroup>
         <InputGroup>
@@ -45,7 +69,8 @@ function Login(props) {
             type="password"
             id="inputPassword5"
             aria-describedby="passwordHelpBlock"
-            placeholder="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
           />
           {/* <Form.Text id="passwordHelpBlock" muted>
             Your password must be 8-20 characters long, contain letters and
@@ -62,13 +87,13 @@ function Login(props) {
             />
           </Form>
         </InputGroup>
-        
+
       </Modal.Body>
       <Modal.Footer>
         <div id="submit">
-            <Button variant="dark">
-                Submit
-            </Button>
+          <Button variant="dark" onClick={handleSubmit}>
+            Submit
+          </Button>
         </div>
       </Modal.Footer>
     </Modal>

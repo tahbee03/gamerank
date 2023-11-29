@@ -5,7 +5,7 @@
 }
 
 .logo {
-    height: 75%;
+    height: 100%;
     padding: 10px;
 }
 
@@ -45,11 +45,11 @@
     margin: 0 10px;
 }
 
-.buttons .login-btn, .genres-btn {
+.buttons .login-btn, .register-btn, .genres-btn {
     margin-right: 10px;
 }
 
-.buttons .register-btn, .discounts-btn {
+.buttons .register-btn, .discounts-btn, .profile-btn {
     margin-left: 10px;
 }
 
