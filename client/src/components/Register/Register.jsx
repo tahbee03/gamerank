@@ -7,10 +7,10 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import ModalTitle from "react-bootstrap/esm/ModalTitle";
-import "../styles/Custom.css"
+import "./Register.css"
 const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server via environment variable
 
-function Signup(props) {
+function Register(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,7 +52,7 @@ function Signup(props) {
       <Modal.Header closeButton>
         <ModalTitle>
           <div id="title">
-            <h2>Signup</h2>
+            <h2>Register</h2>
           </div>
         </ModalTitle>
       </Modal.Header>
@@ -111,4 +111,4 @@ function Signup(props) {
   );
 }
 
-export default Signup;
+export default Register;

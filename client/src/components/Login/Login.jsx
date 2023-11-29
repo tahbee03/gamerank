@@ -5,7 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import ModalTitle from "react-bootstrap/esm/ModalTitle";
-import "../styles/Custom.css";
+import "./Login.css";
 const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server via environment variable
 
 function Login(props) {
