@@ -16,16 +16,22 @@ function Profile() {
         >
             <div>
                 <Navbar/>
-                <div>
+                <div className="top">
                     <div className="profile">
-                    <img src="default-avatar.jpg" alt="Avatar"></img>
-                    <div className="name">Name</div>
-                    <div className="edit-btn"><button>Edit Profile</button></div>
+                        <img src="default-avatar.jpg" alt="Avatar"></img>
+                        <div className="name">Name</div>
+                        <div className="edit-btn"><button>Edit Profile</button></div>
                     </div>
                     <div className="bar">
-                        test
+                        <td>Profile</td>
+                        <td>Activity</td>
+                        <td>Games</td>
+                        <td>Ranks</td>
+                        <td>Lists</td>
+                        <td>Socials</td>
+                        <td>Followers: 0</td>
+                        <td>Following: 0</td>
                     </div>
-                    
                 </div>
 
                 <div className="section">
@@ -43,11 +49,27 @@ function Profile() {
                 <div className="section">
                 <div className="section-title">Recent Rankings</div>
                 <hr className="divider" />
-                </div>            
+                <div>
+                    <div className="ranking">
+                        <img src="default-avatar.jpg" alt="Ranking"></img>
+                        <div>
+                            <tr className="game-title">GAME TITLE</tr>
+                            <tr><BsStar /><BsStar /><BsStar /><BsStar /><BsStar /> Ranked: 12/4/2023</tr>
+                            <tr className="spoilers">Review contains spoilers</tr>
+                            <tr>Title is Truly The Most Genres That Has Ever Gamed.</tr>
+                        </div>
+                    </div>
+                    
+                </div>
+                </div>      
 
                 <div className="section">
                 <div className="section-title">Recent Lists</div>
                 <hr className="divider" />
+                    <div className="listing">
+                        <img src="default-avatar.jpg" alt="Listing"></img>
+
+                    </div>
                 </div>
             </div>
         </ThemeProvider>

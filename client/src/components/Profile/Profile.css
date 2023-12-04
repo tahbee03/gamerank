@@ -1,7 +1,12 @@
+.top {
+    display: flex;
+    align-items: center;
+}
+
 .profile {
     width: 25%;
     height: 45%;
-    border: 3px solid #73AD21;
+    /* border: 3px solid #73AD21; */
     padding: 10px;
     padding-top: 50px;
     display: inline-block;
@@ -32,9 +37,14 @@
 
 .bar {
     display: inline-block;
-    border: 1px solid red;
-    padding: 1rem 1rem;
+    border: 1px solid black;
+    padding: 10px;
     vertical-align: middle;
+    background-color: lightgrey;
+}
+
+.bar td {
+    padding-right: 20px;
 }
 
 .divider {
@@ -54,13 +64,13 @@
 }
 
 .rct-act {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     display: flex;
     
 }
 
 .act {
-    border: 2px solid green;
+    /* border: 2px solid green; */
     margin: 0px 15px;
     width: 150px;
     height: 300px;
@@ -68,7 +78,7 @@
 }
 
 .act img {
-    border: 2px solid red;
+    /* border: 2px solid red; */
     background-color: lightgrey;
     display: block;
 
@@ -81,3 +91,17 @@
 .act.col {
     padding: 0 0;
 }
+
+.ranking {
+    display: flex;
+    align-items: center;
+}
+
+.game-title {
+    font-size: 30px;
+}
+
+.spoilers {
+    color: lightgrey;
+}
+
