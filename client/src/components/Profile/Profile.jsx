@@ -23,18 +23,16 @@ function Profile() {
                         <div className="edit-btn"><button>Edit Profile</button></div>
                     </div>
                     <div className="bar">
-                        <td>Profile</td>
-                        <td>Activity</td>
-                        <td>Games</td>
-                        <td>Ranks</td>
-                        <td>Lists</td>
+                        <td><a href="#activity">Activity</a></td>
+                        <td><a href="#ranking">Ranks</a></td>
+                        <td><a href="#listing">Lists</a></td>
                         <td>Socials</td>
                         <td>Followers: 0</td>
                         <td>Following: 0</td>
                     </div>
                 </div>
 
-                <div className="section">
+                <div className="section" id="activity">
                 <div className="section-title">Recent Activity</div>
                 <hr className="divider" />
                     <Row className="rct-act">
@@ -46,7 +44,7 @@ function Profile() {
                     </Row>
                 </div>
 
-                <div className="section">
+                <div className="section" id="ranking">
                 <div className="section-title">Recent Rankings</div>
                 <hr className="divider" />
                 <div>
@@ -63,7 +61,7 @@ function Profile() {
                 </div>
                 </div>      
 
-                <div className="section">
+                <div className="section" id="listing">
                 <div className="section-title">Recent Lists</div>
                 <hr className="divider" />
                     <div className="listing">
