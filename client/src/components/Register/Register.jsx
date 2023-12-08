@@ -1,5 +1,3 @@
-// TODO: Rename file and component to Register.jsx and Register, respectively
-
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom"; // useNavigate()
 import Button from "react-bootstrap/Button";
@@ -14,6 +12,7 @@ function Register(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState(null);
   const navigate = useNavigate(); // Needed to redirect to another page
 
   function showPassword() {
@@ -33,13 +32,14 @@ function Register(props) {
     });
     const data = await response.json();
 
-    if (!response.ok) console.log(data.error);
-    else {
+    if (!response.ok) {
+      console.log(data.error);
+      setMsg(data.error);
+    } else {
       sessionStorage.setItem("user", JSON.stringify(data)); // Stores user in browser session storage
       navigate("/Profile");
     }
 
-    // TODO: Modify so error messages are displayed on the front-end
   }
 
   return (
@@ -84,10 +84,6 @@ function Register(props) {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          {/* <Form.Text id="passwordHelpBlock" muted>
-            Your password must be 8-20 characters long, contain letters and
-            numbers, and must not contain spaces, special characters, or emoji.
-          </Form.Text> */}
         </InputGroup>
         <InputGroup>
           <Form className="lg" id="switch">
@@ -99,6 +95,11 @@ function Register(props) {
             />
           </Form>
         </InputGroup>
+        {(msg) && (
+          <div className="error-msg-cont">
+            <p className="error-msg">{msg}</p>
+          </div>
+        )}
       </Modal.Body>
       <Modal.Footer>
         <div id="submit">
