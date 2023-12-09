@@ -4,7 +4,7 @@ import "../styles/Footer.css";
 export default function Footer() {
     return (
         <footer>
-            <section className="footer--katanaKoders">
+            <section className="footer--katanakoders">
                 <h6>
                     Katana Koders
                 </h6>
@@ -16,7 +16,7 @@ export default function Footer() {
                     <li>Pablo</li>
                 </ul>
             </section>
-            <section className="footer--techSection">
+            <section className="footer--techsection">
                 <h6>
                     Technology
                 </h6>

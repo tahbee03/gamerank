@@ -1,9 +1,10 @@
 .carousel{
     padding: 15px;
-    width: 800px;
+    width: 75%;
     margin: 0 auto; /*Centers Carousel*/
 }
 
 .carousel-image > img{
     width: 100%;
+    height: 100%;
 }

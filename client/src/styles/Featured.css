@@ -7,3 +7,14 @@
     text-align: center;
     margin-top: 15px;
 }
+
+.row > .col{
+    flex: 1 0 0%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.featured--games, img{
+    width: 200px;
+    height: 300px;
+}

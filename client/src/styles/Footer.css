@@ -1,3 +1,19 @@
 footer{
     display: flex;
+    margin: 0 15px;
+}
+
+ol, ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.footer--katanakoders{
+    text-align: center;
+    padding: 0 15px;
+}
+
+.footer--techsection{
+    text-align: center;
+    padding: 0 15px;
 }
