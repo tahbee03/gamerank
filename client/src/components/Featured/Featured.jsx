@@ -16,7 +16,6 @@ export default function Featured() {
         let r = await fetch(`${api}games?key=${key}`);
         let d = await r.json();
 
-        console.log(d.results);
         setData(d.results);
         setLoading(false);
     }
