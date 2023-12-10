@@ -8,11 +8,10 @@ function Home() {
     return (
         <>
             <Navbar />
-            <Carousel/>
-            <Featured/>
-            <Footer/>
+            <Carousel />
+            <Featured />
+            <Footer />
         </>
-
     );
 }
 
