@@ -64,7 +64,7 @@ const userRegister = async (req, res) => {
             pfp: "",
             role: "gamer"
         });
-
+        console.log(user)
         res.status(200).json({username: user.username, email: user.email});
     } catch(error) {
         console.log(error.message);

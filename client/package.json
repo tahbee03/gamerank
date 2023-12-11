@@ -17,7 +17,8 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.17.0"
+    "react-router-dom": "^6.17.0",
+    "react-simple-star-rating": "^5.1.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

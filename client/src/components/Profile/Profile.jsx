@@ -4,11 +4,16 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { BsStar } from "react-icons/bs";
+import { useState } from 'react';
+import Review from '../Review/Review.jsx';
+import StarRating from '../StarRating.jsx';
+
 // import { BsStarHalf } from "react-icons/bs";
 // import { BsStarFill } from "react-icons/bs";
 
 
 function Profile() {
+    const [createReviewModalShow, setCreateReviewModalShow] = useState(false);
     const user = sessionStorage.getItem("user");
 
     return (
@@ -25,24 +30,28 @@ function Profile() {
                         <div className="edit-btn"><button>Edit Profile</button></div>
                     </div>
                     <div className="bar">
-                        <td><a href="#activity">Activity</a></td>
-                        <td><a href="#ranking">Ranks</a></td>
-                        <td><a href="#listing">Lists</a></td>
+                        <td onClick={() => setCreateReviewModalShow(true)} >Review</td>                        
+                        <td onClick={() => window.location.href = "#activity"}>Activity</td>
+                        <td onClick={() => window.location.href = "#ranking"}>Ranking</td>
                         <td>Socials</td>
                         <td>Followers: 0</td>
                         <td>Following: 0</td>
                     </div>
+                    <Review
+                        show={createReviewModalShow}
+                        onHide={() => setCreateReviewModalShow(false)}
+                    />
                 </div>
 
                 <div className="section" id="activity">
                 <div className="section-title">Recent Activity</div>
                 <hr className="divider" />
                     <Row className="rct-act">
-                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><BsStar /><BsStar /><BsStar /><BsStar /><BsStar /></Col>
-                        <Col className="act"><img src="asdkasdaergo" alt="Activity"></img><BsStar /><BsStar /><BsStar /><BsStar /><BsStar /></Col>
-                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><BsStar /><BsStar /><BsStar /><BsStar /><BsStar /></Col>
-                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><BsStar /><BsStar /><BsStar /><BsStar /><BsStar /></Col>
-                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><BsStar /><BsStar /><BsStar /><BsStar /><BsStar /></Col>
+                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><StarRating /></Col>
+                        <Col className="act"><img src="empty" alt="Activity"></img><StarRating /></Col>
+                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><StarRating /></Col>
+                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><StarRating /></Col>
+                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><StarRating /></Col>
                     </Row>
                 </div>
 
@@ -63,14 +72,6 @@ function Profile() {
                 </div>
                 </div>      
 
-                <div className="section" id="listing">
-                <div className="section-title">Recent Lists</div>
-                <hr className="divider" />
-                    <div className="listing">
-                        <img src="default-avatar.jpg" alt="Listing"></img>
-
-                    </div>
-                </div>
             </div>
         </ThemeProvider>
     )

@@ -1,0 +1,10 @@
+#submit {
+    display:flex;
+    justify-content: flex-start;
+}
+
+#title{
+    display: flex;
+    text-align: center; 
+    justify-content: space-around;
+}
