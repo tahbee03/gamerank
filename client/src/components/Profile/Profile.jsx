@@ -1,15 +1,11 @@
 import Navbar from '../Navbar/Navbar.jsx';
-import './Profile.css';
 import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { BsStar } from "react-icons/bs";
 import { useState } from 'react';
 import Review from '../Review/Review.jsx';
 import StarRating from '../StarRating.jsx';
-
-// import { BsStarHalf } from "react-icons/bs";
-// import { BsStarFill } from "react-icons/bs";
+import './Profile.css';
 
 
 function Profile() {
