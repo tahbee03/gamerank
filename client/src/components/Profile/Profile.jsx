@@ -32,7 +32,6 @@ function Profile() {
                     <div className="bar">
                         <td onClick={() => setCreateReviewModalShow(true)} >Review</td>                        
                         <td onClick={() => window.location.href = "#activity"}>Activity</td>
-                        <td onClick={() => window.location.href = "#ranking"}>Ranking</td>
                         <td>Socials</td>
                         <td>Followers: 0</td>
                         <td>Following: 0</td>
@@ -54,23 +53,6 @@ function Profile() {
                         <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><StarRating /></Col>
                     </Row>
                 </div>
-
-                <div className="section" id="ranking">
-                <div className="section-title">Recent Rankings</div>
-                <hr className="divider" />
-                <div>
-                    <div className="ranking">
-                        <img src="default-avatar.jpg" alt="Ranking"></img>
-                        <div>
-                            <tr className="game-title">GAME TITLE</tr>
-                            <tr><BsStar /><BsStar /><BsStar /><BsStar /><BsStar /> Ranked: 12/4/2023</tr>
-                            <tr className="spoilers">Review contains spoilers</tr>
-                            <tr>Title is Truly The Most Genres That Has Ever Gamed.</tr>
-                        </div>
-                    </div>
-                    
-                </div>
-                </div>      
 
             </div>
         </ThemeProvider>
