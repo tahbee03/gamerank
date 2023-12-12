@@ -1,5 +1,9 @@
-.gamerrank-page{
+div#root{
     background-color: #1f1f1f;
     color: white;
+}
+
+html{
+    height: 100%;
 }
 

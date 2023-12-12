@@ -24,7 +24,7 @@ export default function Footer() {
                 <ul>
                     <li>MongoDB</li>
                     <li>JWT</li>
-                    <li>ReactJS</li>
+                    <li><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" /></li>
                     <li>Bootstrap</li>
                     <li>Veat</li>
                     <li>Express/Node.js</li>
