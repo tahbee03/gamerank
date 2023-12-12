@@ -5,7 +5,7 @@ import NoMatch from '../NoMatch/NoMatch.jsx';
 import { Route, Routes } from 'react-router-dom';
 
 
-function App() {
+export default function App() {
   return (
     <>
       <Routes>
@@ -17,4 +17,3 @@ function App() {
   )
 }
 
-export default App
