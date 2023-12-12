@@ -18,5 +18,3 @@ function App() {
 }
 
 export default App
-
-// TODO: Create a Home component to replace Navbar

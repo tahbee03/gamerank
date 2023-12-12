@@ -56,16 +56,17 @@ const userRegister = async (req, res) => {
     try {
         const match = await User.findOne({email});
         if (match) res.status(400).json({error: "Email already in use!"});
+        else {
+            const user = await User.create({
+                username,
+                email,
+                password,
+                pfp: "",
+                role: "gamer"
+            });
 
-        const user = await User.create({
-            username,
-            email,
-            password,
-            pfp: "",
-            role: "gamer"
-        });
-
-        res.status(200).json({username: user.username, email: user.email});
+            res.status(200).json({username: user.username, email: user.email});
+        }
     } catch(error) {
         console.log(error.message);
         res.status(500).json({error: error.message});

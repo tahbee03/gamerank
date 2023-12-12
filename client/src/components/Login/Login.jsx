@@ -11,6 +11,7 @@ const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server vi
 function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState(null);
   const navigate = useNavigate(); // Needed to redirect to another page
 
   function showPassword() {
@@ -30,13 +31,15 @@ function Login(props) {
     });
     const data = await response.json();
 
-    if (!response.ok) console.log(data.error);
+    if (!response.ok) {
+      console.log(data.error);
+      setMsg(data.error);
+    }
     else {
       sessionStorage.setItem("user", JSON.stringify(data)); // Stores user in browser session storage
       navigate("/Profile");
     }
 
-    // TODO: Modify so error messages are displayed on the front-end
   }
 
   return (
@@ -72,10 +75,6 @@ function Login(props) {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          {/* <Form.Text id="passwordHelpBlock" muted>
-            Your password must be 8-20 characters long, contain letters and
-            numbers, and must not contain spaces, special characters, or emoji.
-          </Form.Text> */}
         </InputGroup>
         <InputGroup>
           <Form className="lg" id="switch">
@@ -87,7 +86,11 @@ function Login(props) {
             />
           </Form>
         </InputGroup>
-
+        {(msg) && (
+          <div className="error-msg-cont">
+            <p className="error-msg">{msg}</p>
+          </div>
+        )}
       </Modal.Body>
       <Modal.Footer>
         <div id="submit">
