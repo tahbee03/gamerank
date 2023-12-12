@@ -15,5 +15,9 @@ export default function App() {
       </Routes>
     </>
   )
+<<<<<<< Updated upstream
 }
 
+=======
+}
+>>>>>>> Stashed changes
