@@ -1,11 +1,13 @@
 .featured-game {
     display: flex;
     flex-direction: column;
-    border: 1px black solid;
+    border: 1px #5866e7 solid;
     border-radius: 5px;
     padding: 15px;
     transform: scale(0.95);
     height: 300px;
+    background-color: #5866e7;
+    color: #ebe770;
 }
 
 .featured-game .game-pic {
