@@ -18,10 +18,10 @@ export default function Footer() {
                                     <section className='flip-card--katanaKoders'>
                                         <h1>The Katana Koders</h1>
                                         <hr/>
-                                        <h5>John: Github (PL01) | LinkedIn</h5>
-                                        <h5>Talike: Github () | LinkedIn</h5>
-                                        <h5>Pablo Lara: Github () | LinkedIn</h5>
-                                        <h5>Sri: Github () | LinkedIn</h5>
+                                        <h5>Fu Jun Pan: Github <a href='https://github.com/lolfjp'>(lolfjp)</a> | <a href='https://www.linkedin.com/in/fu-jun-pan-80964621b/'>LinkedIn</a></h5>
+                                        <h5>Talike Bennett: Github <a href='https://github.com/tahbee03'>(tahbee03)</a> | <a href='https://www.linkedin.com/in/talikebennett/'>LinkedIn</a></h5>
+                                        <h5>Pablo Lara: Github <a href='https://github.com/pl01'>(pl01)</a> | <a href='https://www.linkedin.com/in/pablo-lara/'>LinkedIn</a></h5>
+                                        <h5>Sri Tarun Gulumuru: Github <a href='https://github.com/sritarung'>(sritarung)</a> | <a href='https://www.linkedin.com/in/sri-tarung/'>LinkedIn</a></h5>
                                     </section>
                                 </div>
                             </div>
