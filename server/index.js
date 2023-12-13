@@ -1,6 +1,7 @@
 require("dotenv").config(); // Connect environment variables from .env file to process.env object
 const express = require("express");
-const users = require("./views/user_view"); // Include API routes for users 
+const users = require("./views/user_view"); // Include routes for users 
+const rankings = require("./views/ranking_view"); // Include routes for rankings
 const mongoose = require("mongoose"); // Include Mongoose library
 const cors = require("cors");
 
@@ -14,6 +15,9 @@ app.use(express.json());
 
 // Routes for user API
 app.use("/api/users", users);
+
+// Routes for ranking API
+app.use("/api/rankings", rankings);
 
 app.get("/", (req, res) => {
     res.send("Welcome to Gamerank API!");

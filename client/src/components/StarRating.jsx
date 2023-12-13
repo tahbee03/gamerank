@@ -1,12 +1,11 @@
-import { useState } from 'react';
 import { Rating } from 'react-simple-star-rating';
 
-function StarRating() {
-  const [rating, setRating] = useState(0);
+function StarRating({ rank, setRank }) {
 
   // Catch Rating value
   const handleRating = (rate) => {
-    setRating(rate);
+    console.log("Stars clicked!");
+    setRank(rate);
 
     // other logic
   };
@@ -17,16 +16,15 @@ function StarRating() {
   const onPointerMove = (value, index) => console.log(value, index);
 
   return (
-    <div className='App'>
+    <div>
       <Rating
         onClick={handleRating}
-        onPointerEnter={onPointerEnter}
-        onPointerLeave={onPointerLeave}
-        onPointerMove={onPointerMove}
         /* Available Props */
-        allowFraction = {true}
-        transtion = {true}
+        allowFraction={true}
+        transtion={true}
       />
+      <p>{rank}</p>
+      <button onClick={() => setRating(0)}>Clear</button>
     </div>
   );
 }
