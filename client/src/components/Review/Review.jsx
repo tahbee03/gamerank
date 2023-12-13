@@ -6,25 +6,35 @@ import InputGroup from "react-bootstrap/InputGroup";
 import ModalTitle from "react-bootstrap/esm/ModalTitle";
 import "./Review.css"
 import StarRating from '../StarRating';
+import { useEffect } from 'react';
 const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server via environment variable
 
 function Review(props) {
   const [picUrl, setPicUrl] = useState("");
   const [title, setTitle] = useState("");
-  const [rank, setRank] = useState(""); //use the stars to determine the ranking of the review
-  const [date, setDate] = useState(""); //use current Date to get the date
-  const [spoiler, setSpoiler] = useState("");
+  const [rank, setRank] = useState(0); //use the stars to determine the ranking of the review
+  const [spoiler, setSpoiler] = useState(false);
   const [desc, setDesc] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit() {
-    const response = await fetch(`${server}reviews/add`, {
+    setLoading(true);
+    const user = sessionStorage.getItem("user");
+    const response = await fetch(`${server}rankings`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ picUrl, title, rank, date, spoiler, desc })
+      body: JSON.stringify({ author: JSON.parse(user).id, picUrl, title, rank, spoiler, desc })
     });
     const data = await response.json();
+
+    if (!response.ok) {
+      console.log(data.error);
+    }
+    else {
+      window.location.reload();
+    }
   }
-  
+
   return (
     <Modal
       {...props}
@@ -60,19 +70,33 @@ function Review(props) {
 
           />
         </InputGroup>
-        <Form.Check 
-          type="switch"
-          label="Spoiler?"
-          onChange={(e) => setSpoiler(e.target.value)}
-        />
-        <StarRating />
+        <InputGroup>
+          <Form.Check
+            type="switch"
+            label="Spoiler?"
+            onChange={() => setSpoiler(!spoiler)}
+          />
+        </InputGroup>
+        <InputGroup>
+          <StarRating
+            rank={rank}
+            setRank={setRank}
+          />
+        </InputGroup>
       </Modal.Body>
       <Modal.Footer>
-        <div id="submit">
-          <Button variant="dark" onClick={handleSubmit}>
-            Submit
-          </Button>
-        </div>
+        {(loading) && (
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        )}
+        {!(loading) && (
+          <div id="submit">
+            <Button variant="dark" onClick={handleSubmit}>
+              Submit
+            </Button>
+          </div>
+        )}
       </Modal.Footer>
     </Modal>
   );

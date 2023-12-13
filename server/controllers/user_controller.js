@@ -41,7 +41,7 @@ const userLogin = async (req, res) => {
         
         if(!user) res.status(404).json({error: "No such user!"});
         else if(password != user.password) res.status(400).json({error: "Incorrect password!"});
-        else res.status(200).json({username: user.username, email: user.email});
+        else res.status(200).json({username: user.username, email: user.email, id: user._id});
     } catch(error) {
         console.log(error.message);
         res.status(500).json({error: error.message});
@@ -65,7 +65,7 @@ const userRegister = async (req, res) => {
                 role: "gamer"
             });
 
-            res.status(200).json({username: user.username, email: user.email});
+            res.status(200).json({username: user.username, email: user.email, id: user._id});
         }
     } catch(error) {
         console.log(error.message);

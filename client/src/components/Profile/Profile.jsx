@@ -5,16 +5,39 @@ import Col from 'react-bootstrap/Col';
 // import { BsStar } from "react-icons/bs";
 // import { BsStarHalf } from "react-icons/bs";
 // import { BsStarFill } from "react-icons/bs";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Review from '../Review/Review.jsx';
 import StarRating from '../StarRating.jsx';
 import './Profile.css';
 import Ranking from '../Ranking/Ranking.jsx';
+const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server via environment variable
 
 
 function Profile() {
     const [createReviewModalShow, setCreateReviewModalShow] = useState(false);
+    const [rankings, setRankings] = useState([]);
+    const [loading, setLoading] = useState(false);
     const user = sessionStorage.getItem("user");
+
+    useEffect(() => {
+        async function fetchData() {
+            setLoading(true);
+            const response = await fetch(`${server}rankings`);
+            const data = await response.json();
+
+            if (!response.ok) {
+                console.log(data.error);
+            }
+            else {
+                // console.log(data);
+                // console.log(data.filter(r => r.author == JSON.parse(user).id));
+                setRankings(data.filter(r => r.author == JSON.parse(user).id));
+            }
+            setLoading(false);
+        }
+
+        fetchData();
+    }, []);
 
     return (
         <ThemeProvider
@@ -30,7 +53,7 @@ function Profile() {
                         <div className="edit-btn"><button>Edit Profile</button></div>
                     </div>
                     <div className="bar">
-                        <td onClick={() => setCreateReviewModalShow(true)} >Review</td>                        
+                        <td onClick={() => setCreateReviewModalShow(true)} >Review</td>
                         <td onClick={() => window.location.href = "#activity"}>Activity</td>
                         <td>Socials</td>
                         <td>Followers: 0</td>
@@ -42,58 +65,32 @@ function Profile() {
                     />
                 </div>
 
-                {/* <div className="section" id="activity">
-                    <p className="section-title">Recent Activity</p>
-                    <hr className="divider" />
-                    <Row className="rct-act">
-                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><StarRating /></Col>
-                        <Col className="act"><img src="empty" alt="Activity"></img><StarRating /></Col>
-                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><StarRating /></Col>
-                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><StarRating /></Col>
-                        <Col className="act"><img src="default-avatar.jpg" alt="Activity"></img><StarRating /></Col>
-                    </Row>
-                </div> */}
-
                 <div className="section" id="ranking">
                     <p className="section-title">Recent Rankings</p>
                     <hr className="divider" />
                     <div className="row">
-                        <Ranking
-                            picurl={"https://assets1.ignimgs.com/2019/05/17/pokemon-ruby---button-sm-1558057647902.jpg"}
-                            title={"Pokémon Ruby"}
-                            rank={4}
-                            date={"12/8/23"}
-                            spoiler={false}
-                            desc={"I could play this for hours!"}
-                        />
-                        <Ranking
-                            picurl={"https://cdn.cloudflare.steamstatic.com/steam/apps/319510/ss_b5bf2127754d4e9bf6ab1c94e599d47f93a6708a.1920x1080.jpg?t=1666889251"}
-                            title={"Five Nights at Freddy's"}
-                            rank={5}
-                            date={"12/8/23"}
-                            spoiler={false}
-                            desc={"Amazing game!"}
-                        />
-                        <Ranking
-                            picurl={"https://cdn2.unrealengine.com/fortnite-chapter-4-og-overview-page-key-art-bg-1920x1080-1fbc3a1c0297.jpg"}
-                            title={"Fortnite"}
-                            rank={2}
-                            date={"12/8/23"}
-                            spoiler={true}
-                            desc={"Are you kidding me?"}
-                        />
+                        {(loading) && (
+                            <div className="spinner-border" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
+                        )}
+                        {!(loading) && (rankings.length == 0) && (
+                            <p>No rankings!</p>
+                        )}
+                        {!(loading) && (rankings.length > 0) && (
+                            rankings.map(r => (
+                                <Ranking
+                                    picurl={r.picUrl}
+                                    title={r.title}
+                                    rank={r.rank}
+                                    date={r.createdAt}
+                                    spoiler={r.spoiler}
+                                    desc={r.desc}
+                                />
+                            ))
+                        )}
                     </div>
                 </div>
-
-                {/* TODO: Create a form so users can create their own rankings. Users should also be able to remove them. */}
-
-                {/* <div className="section" id="listing">
-                    <p className="section-title">Recent Lists</p>
-                    <hr className="divider" />
-                    <div className="listing">
-                        <img src="default-avatar.jpg" alt="Listing"></img>
-                    </div>
-                </div> */}
             </div>
         </ThemeProvider>
     )
