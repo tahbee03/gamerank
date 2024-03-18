@@ -1,21 +1,16 @@
 import { useState } from 'react';
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-import ModalTitle from "react-bootstrap/esm/ModalTitle";
 import "./Review.css"
 import StarRating from '../StarRating';
-import { useEffect } from 'react';
+import GameSearch from '../GameSearch/GameSearch';
+import { Row, Col, Button, Modal, Form, InputGroup, ModalTitle } from "react-bootstrap";
 const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server via environment variable
 
 function Review(props) {
-  const [picUrl, setPicUrl] = useState("");
-  const [title, setTitle] = useState("");
   const [rank, setRank] = useState(0); //use the stars to determine the ranking of the review
   const [spoiler, setSpoiler] = useState(false);
   const [desc, setDesc] = useState("");
   const [loading, setLoading] = useState(false);
+  const [gameData, setGameData] = useState(null);
 
   async function handleSubmit() {
     setLoading(true);
@@ -23,7 +18,7 @@ function Review(props) {
     const response = await fetch(`${server}rankings`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ author: JSON.parse(user).id, picUrl, title, rank, spoiler, desc })
+      body: JSON.stringify({ author: JSON.parse(user).id, picUrl: gameData.image, title: gameData.name, rank, spoiler, desc })
     });
     const data = await response.json();
 
@@ -50,24 +45,29 @@ function Review(props) {
         </ModalTitle>
       </Modal.Header>
       <Modal.Body>
+        {!(gameData) && (
+          <GameSearch setGameData={setGameData} />
+        )}
+        {(gameData) && (
+          <Row className="selected-game mb-3">
+            <Col className="column" xs={12} sm={4}>
+              <img src={gameData.image} alt="game-pic" className="game-pic" />
+            </Col>
+            <Col className="column" xs={12} sm={7}>
+              <p>{gameData.name}</p>
+            </Col>
+            <Col className="column" xs={12} sm={1}>
+              <span className="material-symbols-outlined x-symbol" onClick={() => setGameData(null)}>
+                close
+              </span>
+            </Col>
+          </Row>
+        )}
         <InputGroup size="md" className="mb-3">
           <Form.Control
-            placeholder="Title"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </InputGroup>
-        <InputGroup className="mb-3">
-          <Form.Control
-            placeholder="URL"
-            onChange={(e) => setPicUrl(e.target.value)}
-          />
-        </InputGroup>
-        <InputGroup size="md" className="mb-3">
-          <Form.Control
-            placeholder="This is where you write your review."
+            placeholder="Write your review here."
             as="textarea" rows={3}
             onChange={(e) => setDesc(e.target.value)}
-
           />
         </InputGroup>
         <InputGroup>
