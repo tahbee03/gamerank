@@ -40,22 +40,27 @@ export default function ImageCarousel() {
   return (
     <>
       {(loading) && (
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
+        <div className="container">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
         </div>
-      )}
-      {!(loading) && (data) && (
-        <Carousel>
-          {data.map((game, i) => (
-            <Carousel.Item key={i}>
-              <img src={game.background_image} />
-              <Carousel.Caption>
-                <h3>{game.name}</h3>
-              </Carousel.Caption>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      )}
+      )
+      }
+      {
+        !(loading) && (data) && (
+          <Carousel>
+            {data.map((game, i) => (
+              <Carousel.Item key={i}>
+                <img src={game.background_image} />
+                <Carousel.Caption>
+                  <h3>{game.name}</h3>
+                </Carousel.Caption>
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        )
+      }
     </>
   );
 }
