@@ -2,7 +2,7 @@ import { useState } from 'react';
 import "./Review.css"
 import StarRating from '../StarRating';
 import GameSearch from '../GameSearch/GameSearch';
-import { Row, Col, Button, Modal, Form, InputGroup, ModalTitle } from "react-bootstrap";
+import { Button, Modal, Form, InputGroup, ModalTitle } from "react-bootstrap";
 const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server via environment variable
 
 function Review(props) {
@@ -49,19 +49,19 @@ function Review(props) {
           <GameSearch setGameData={setGameData} />
         )}
         {(gameData) && (
-          <Row className="selected-game mb-3">
-            <Col className="column" xs={12} sm={4}>
+          <div className="selected-game mb-3">
+            <div className="col-6">
               <img src={gameData.image} alt="game-pic" className="game-pic" />
-            </Col>
-            <Col className="column" xs={12} sm={7}>
+            </div>
+            <div className="col-5">
               <p>{gameData.name}</p>
-            </Col>
-            <Col className="column" xs={12} sm={1}>
+            </div>
+            <div className="col-1">
               <span className="material-symbols-outlined x-symbol" onClick={() => setGameData(null)}>
                 close
               </span>
-            </Col>
-          </Row>
+            </div>
+          </div>
         )}
         <InputGroup size="md" className="mb-3">
           <Form.Control
