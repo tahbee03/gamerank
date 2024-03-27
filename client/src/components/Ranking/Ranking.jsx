@@ -28,5 +28,3 @@ export default function Ranking({ picurl, title, rank, date, spoiler, desc }) {
         </div>
     );
 }
-
-// TODO: Make spoiler text interactive
