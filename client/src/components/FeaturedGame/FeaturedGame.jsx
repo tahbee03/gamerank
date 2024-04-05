@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import "./FeaturedGame.css";
 
 export default function FeaturedGame({ title, picture, reviews }) {

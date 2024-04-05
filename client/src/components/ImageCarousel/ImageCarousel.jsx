@@ -1,8 +1,8 @@
 import Carousel from 'react-bootstrap/Carousel';
 import './ImageCarousel.css';
 import { useEffect, useState } from 'react'
-const api = import.meta.env.VITE_API_URL; // URL to game API via environment variable
-const key = import.meta.env.VITE_API_KEY; // Key for game API
+const api = import.meta.env.VITE_API_URL;
+const key = import.meta.env.VITE_API_KEY;
 
 
 export default function ImageCarousel() {
@@ -31,7 +31,7 @@ export default function ImageCarousel() {
     // console.log(d.results.filter((_, i) => (added.includes(i))));
     setData(d.results.filter((_, i) => (added.includes(i))));
     setLoading(false);
-  }
+  } 
 
   useEffect(() => {
     fetchData();
@@ -59,35 +59,3 @@ export default function ImageCarousel() {
     </>
   );
 }
-
-
-/*export default function CarouselComponent(){
-    return (
-        <div id="carouselExample" className="carousel slide">
-            <div className = "carousel-indicators">
-                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div className="carousel-inner">
-                <div className="carousel-item active">
-                    <img src="carousel-img1.jpg" className="d-block w-100" alt="..." />
-                </div>
-                <div className="carousel-item">
-                    <img src="carousel-img2.jpg" className="d-block w-100" alt="..." />
-                </div>
-                <div className="carousel-item">
-                    <img src="carousel-img3.jpg" className="d-block w-100" alt="..." />
-                </div>
-            </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Next</span>
-            </button>
-        </div>
-    )
-}*/

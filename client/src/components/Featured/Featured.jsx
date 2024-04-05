@@ -4,8 +4,9 @@ import Col from 'react-bootstrap/Col';
 import FeaturedGame from '../FeaturedGame/FeaturedGame.jsx';
 import './Featured.css';
 import { useEffect, useState } from 'react'
-const api = import.meta.env.VITE_API_URL; // URL to game API via environment variable
-const key = import.meta.env.VITE_API_KEY; // Key for game API
+
+const api = import.meta.env.VITE_API_URL;
+const key = import.meta.env.VITE_API_KEY;
 
 export default function Featured() {
     const [data, setData] = useState(null);
