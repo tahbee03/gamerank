@@ -1,7 +1,9 @@
 .search-result {
     height: 100px;
-    border: 1px gray solid;
-    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    border: 1px black solid;
+    border-radius: 5px;
     padding: 5px;
 }
 
@@ -10,11 +12,19 @@
     cursor: pointer;
 }
 
-.search-result .column {
-    height: 100%;
+.search-result .col-6 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .search-result .game-pic {
-    border-radius: 5px;
     height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.search-result p {
+    margin: 0;
 }

@@ -33,12 +33,14 @@ function GameSearch({ setGameData }) {
         />
       </InputGroup>
       {(loading) && (
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
+        <div className="container">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
         </div>
       )}
       {!(loading) && (
-        <>
+        <div className="container">
           {(results) && (results.length == 0) && (
             <p>No games match your search.</p>
           )}
@@ -52,7 +54,7 @@ function GameSearch({ setGameData }) {
               />
             ))
           )}
-        </>
+        </div>
       )}
     </>
   );

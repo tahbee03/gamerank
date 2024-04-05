@@ -3,14 +3,14 @@ import { Row, Col } from "react-bootstrap";
 
 function SearchResult({ name, image, handleClick }) {
   return (
-    <Row className="mb-3 search-result" onClick={() => handleClick({ name, image })}>
-      <Col className="column" xs={12} sm={4}>
+    <div className="mb-3 search-result" onClick={() => handleClick({ name, image })}>
+      <div className="col-6">
         <img src={image} alt="game-pic" className="game-pic" />
-      </Col>
-      <Col className="column" xs={12} sm={8}>
+      </div>
+      <div className="col-6">
         <p>{name}</p>
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 }
 
