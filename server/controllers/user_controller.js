@@ -97,5 +97,53 @@ const deleteUser = async (req, res) => {
     }
 };
 
+// Follow user
+const followUser = async (req, res) => {
+    const { id } = req.params;
+    const { userIdToFollow } = req.body;
+    try {
+      const user = await User.findById(id);
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Check if the user is already following the target user
+      if (user.following.includes(userIdToFollow)) {
+        return res.status(400).json({ error: 'Already following this user' });
+      }
+  
+      user.following.push(userIdToFollow);
+      await user.save();
+  
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ error: 'Server Error' });
+    }
+  };
+  
+  // Unfollow user
+  const unfollowUser = async (req, res) => {
+    const { id } = req.params;
+    const { userIdToUnfollow } = req.body;
+    try {
+      const user = await User.findById(id);
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Check if the user is not following the target user
+      if (!user.following.includes(userIdToUnfollow)) {
+        return res.status(400).json({ error: 'Not following this user' });
+      }
+  
+      user.following = user.following.filter(userId => userId !== userIdToUnfollow);
+      await user.save();
+  
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ error: 'Server Error' });
+    }
+  };
+
 // Export functions to be used in other modules
-module.exports = {getUsers, getUserByID, userLogin, userRegister, updateUser, deleteUser};
+module.exports = {getUsers, getUserByID, userLogin, userRegister, updateUser, deleteUser, followUser, unfollowUser};

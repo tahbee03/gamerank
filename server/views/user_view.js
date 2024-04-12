@@ -1,5 +1,5 @@
 const express = require("express");
-const {getUsers, getUserByID, userLogin, userRegister, updateUser, deleteUser} = require("../controllers/user_controller");
+const {getUsers, getUserByID, userLogin, userRegister, updateUser, deleteUser, followUser, unfollowUser} = require("../controllers/user_controller");
 const router = express.Router();
 
 // Get all users
@@ -20,4 +20,9 @@ router.patch("/:id", updateUser);
 // Delete specific user
 router.delete("/:id", deleteUser);
 
+// Follow a user
+router.post("/follow/:id", followUser);
+
+// Unfollow a user
+router.post("/unfollow/:id", unfollowUser);
 module.exports = router; // Export the router so that it can be used in index.js
