@@ -1,4 +1,5 @@
 const Ranking = require("../models/ranking_model");
+const User = require("../models/user_model");
 const mongoose = require("mongoose");
 
 const getRankings = async (req, res) => {
@@ -32,6 +33,7 @@ const createRanking = async (req, res) => {
             spoiler
         });
 
+        await User.findByIdAndUpdate(author, { $inc: { reviews: 1 } });
         res.status(200).json(ranking);
 
     } catch (error) {

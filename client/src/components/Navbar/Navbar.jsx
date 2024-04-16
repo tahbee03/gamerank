@@ -2,8 +2,8 @@ import './Navbar.css';
 import {useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 import Login from '../Login/Login.jsx';
-import Register from '../Register/Register';
-
+import Register from '../Register/Register.jsx';
+import TopReviewers from '../TopReviewers/TopReviewers.jsx';
 function Navbar() {
   const [modalShow, setModalShow] = useState(false);
   const [modalShow_two, setModalShow_two] = useState(false);
@@ -35,6 +35,7 @@ function Navbar() {
 
         {(user) && (
           <>
+            <button onClick={() => window.location.href = "/TopReviewers"}>Top Reviewers</button>
             <button onClick={() => window.location.href = "/Profile"} className="profile-btn">Profile</button>
             <button onClick={handleLogout} className="logout-btn">Logout</button>
           </>
