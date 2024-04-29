@@ -10,19 +10,20 @@ export default function TrendingGames(){
     const [gamesData, setGamesData] = useState([]); // State hook for storing games data
     const [loading, setLoading] = useState(true); // State hook for managing the loading status of the API request
 
-    async function fetchData() {
-        setLoading(true);
-
-        let r = await fetch(`${api}games?key=${key}`);
-        let d = await r.json();
-
-        setGamesData(d);
-
-        setLoading(false);
-    }
-      useEffect(() => {
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch(`${api}games?key=${key}`);
+                const data = await response.json();
+                setGamesData(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+            setLoading(false);
+        };
         fetchData();
-      }, [api, key]);
+    }, []);
 
     return(
         <>
@@ -41,10 +42,10 @@ export default function TrendingGames(){
                     <div>
                         <h2>Trending Games!</h2>
                         <div className="game-list">
-                            {gamesData.map(game, i => (
+                            {gamesData.map((game, i) => (
                                 <div key={i} className="game-card">
-                                    <img src={gamesData.background_image}/>
-                                    <h3>{gamesData.name}</h3>
+                                    <img src={game.background_image}/>
+                                    <h3>{game.name}</h3>
                                     <p>Average Rating: Insert Rating Tracking System here?</p>
                                 </div>
                             ))}
