@@ -1,9 +1,12 @@
 const express = require("express");
-const {getUsers, getUserByID, userLogin, userRegister, updateUser, deleteUser, followUser, unfollowUser} = require("../controllers/user_controller");
+const {getUsers, getTopReviewers, getUserByID, userLogin, userRegister, updateUser, deleteUser, followUser, unfollowUser} = require("../controllers/user_controller");
 const router = express.Router();
 
 // Get all users
 router.get("/", getUsers);
+
+// Get top reviewers by reviews
+router.get("/topreviewers", getTopReviewers);
 
 // Get specific user via ID
 router.get("/:id", getUserByID);

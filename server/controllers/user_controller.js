@@ -31,6 +31,42 @@ const getUserByID = async (req, res) => {
     }
 };
 
+const calculateTopReviewers = async () => {
+  try {
+    const topReviewers = await User.aggregate([
+      { 
+        $match: { 
+          reviews: { $type: 'number', $gte: 1 }
+        } 
+      },
+      {
+        $project: {
+          username: 1,
+          reviewCount: '$reviews'
+        }
+      },
+      { $sort: { reviewCount: -1 } }, 
+      { $limit: 10 } 
+    ]);
+
+    return topReviewers;
+  } catch (error) {
+    console.error(error);
+    throw new Error('Error calculating top reviewers');
+  }
+};
+
+// Get top reviewers by review count
+const getTopReviewers = async (req, res) => {
+  try {
+    const topReviewers = await calculateTopReviewers();
+    res.json(topReviewers);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 // Login functionality
 const userLogin = async (req, res) => {
     // TODO: Revise with legit authentication
@@ -146,4 +182,4 @@ const followUser = async (req, res) => {
   };
 
 // Export functions to be used in other modules
-module.exports = {getUsers, getUserByID, userLogin, userRegister, updateUser, deleteUser, followUser, unfollowUser};
+module.exports = {getUsers, getTopReviewers, getUserByID, userLogin, userRegister, updateUser, deleteUser, followUser, unfollowUser};

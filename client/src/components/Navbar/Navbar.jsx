@@ -35,13 +35,14 @@ function Navbar() {
 
         {(user) && (
           <>
-            <button onClick={() => window.location.href = "/TopReviewers"}>Top Reviewers</button>
+            <button onClick={() => window.location.href = "/TopReviewers"} className="topreview-btn">Top Reviewers</button>
             <button onClick={() => window.location.href = "/Profile"} className="profile-btn">Profile</button>
             <button onClick={handleLogout} className="logout-btn">Logout</button>
           </>
         )}
         {(!user) && (
           <>
+            <button onClick={() => window.location.href = "/TopReviewers"} className="topreview-btn">Top Reviewers</button>
             <button onClick={() => setModalShow(true)} className="login-btn">Login</button>
             <button onClick={() => setModalShow_two(true)} className="register-btn">Register</button>
           </>
