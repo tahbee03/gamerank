@@ -36,7 +36,7 @@ function Navbar() {
         {(user) && (
           <>
             <button onClick={() => window.location.href = "/TopReviewers"} className="topreview-btn">Top Reviewers</button>
-            <button onClick={() => window.location.href = "/Profile"} className="profile-btn">Profile</button>
+            <button onClick={() => window.location.href = `/Profile/${JSON.parse(user).username}`} className="profile-btn">Profile</button>
             <button onClick={handleLogout} className="logout-btn">Logout</button>
           </>
         )}

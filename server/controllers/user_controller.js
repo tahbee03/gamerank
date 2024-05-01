@@ -70,10 +70,10 @@ const getTopReviewers = async (req, res) => {
 // Login functionality
 const userLogin = async (req, res) => {
     // TODO: Revise with legit authentication
-    const {email, password} = req.body;
+    const {username, password} = req.body;
 
     try {
-        const user = await User.findOne({email});
+        const user = await User.findOne({username});
         
         if(!user) res.status(404).json({error: "No such user!"});
         else if(password != user.password) res.status(400).json({error: "Incorrect password!"});

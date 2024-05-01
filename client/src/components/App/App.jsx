@@ -11,7 +11,7 @@ export default function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Profile" element={<Profile />} />
+        <Route path="/Profile/:username" element={<Profile />} />
         <Route path="/TopReviewers" element={<TopReviewers />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>

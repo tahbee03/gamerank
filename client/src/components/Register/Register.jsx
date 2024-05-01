@@ -37,7 +37,7 @@ function Register(props) {
       setMsg(data.error);
     } else {
       sessionStorage.setItem("user", JSON.stringify(data)); // Stores user in browser session storage
-      navigate("/Profile");
+      navigate(`/Profile/${username}`);
     }
 
   }
