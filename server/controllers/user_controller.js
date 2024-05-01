@@ -92,8 +92,13 @@ const userRegister = async (req, res) => {
     try {
         const userDupe = await User.findOne({username});
         const emailDupe = await User.findOne({email});
-        if (userDupe) res.status(400).json({error: "Username already in use!"});
-        if (emailDupe) res.status(400).json({error: "Email already in use!"});
+        if (userDupe && emailDupe) {
+          res.status(400).json({error: "Username and email already in use!"});
+        } else if (userDupe) {
+          res.status(400).json({error: "Username already in use!"});
+        } else if (emailDupe) {
+          res.status(400).json({error: "Email already in use!"});
+        }
         else {
             const user = await User.create({
                 username,
