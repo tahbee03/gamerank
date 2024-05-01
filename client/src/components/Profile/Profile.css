@@ -101,13 +101,16 @@
 }
 
 td {
-    cursor: pointer;
     text-align: center;
     padding: 10px;
     border: 1px solid #ddd;
 }
 
-td:hover {
+.clickable {
+    cursor: pointer;
+}
+
+.clickable:hover {
     background-color: #ebe770;
     color: #5866e7;
 }
