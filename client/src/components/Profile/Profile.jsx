@@ -2,11 +2,13 @@ import Navbar from '../Navbar/Navbar.jsx';
 import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import defaultAvatar from '/default-avatar.jpg';
 // import { BsStar } from "react-icons/bs";
 // import { BsStarHalf } from "react-icons/bs";
 // import { BsStarFill } from "react-icons/bs";
 import { useState, useEffect } from 'react';
 import Review from '../Review/Review.jsx';
+import { useParams } from "react-router-dom";
 import StarRating from '../StarRating.jsx';
 import './Profile.css';
 import Ranking from '../Ranking/Ranking.jsx';
@@ -16,8 +18,28 @@ const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server vi
 function Profile() {
     const [createReviewModalShow, setCreateReviewModalShow] = useState(false);
     const [rankings, setRankings] = useState([]);
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
-    const user = sessionStorage.getItem("user");
+    const currentUser = sessionStorage.getItem("user");
+    const { username } = useParams();
+
+    useEffect(() => {
+        async function fetchData() {
+            setLoading(true);
+            const response = await fetch(`${server}users`);
+            const data = await response.json();
+
+            if (!response.ok) {
+                console.log(data.error);
+            }
+            else {
+                setUser(data.filter(u => u.username == username)[0]);
+                // console.log(data.filter(u => u.username == username)[0]);
+            }
+            setLoading(false);
+        }
+        fetchData();
+    }, []);
 
     useEffect(() => {
         async function fetchData() {
@@ -29,16 +51,15 @@ function Profile() {
                 console.log(data.error);
             }
             else {
-                // console.log(data);
-                // console.log(data.filter(r => r.author == JSON.parse(user).id));
-                setRankings(data.filter(r => r.author == JSON.parse(user).id));
+                setRankings(data.filter(r => r.author == user._id));
+                // console.log(data.filter(r => r.author == user._id));
             }
             setLoading(false);
         }
-
+        
         fetchData();
-    }, []);
-
+    }, [user]);
+    
     return (
         <ThemeProvider
             breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
@@ -46,14 +67,19 @@ function Profile() {
         >
             <div>
                 <Navbar />
+                {(!user) && (
+                    <p>Loading...</p>
+                )} 
+                {(user) && (
+                <>
                 <div className="top">
                     <div className="profile">
-                        <img src="default-avatar.jpg" alt="Avatar"></img>
-                        <div className="name">{JSON.parse(user).username}</div>
+                        <img src={defaultAvatar} alt="Avatar"></img>
+                        <div className="name">{user.username}</div>
                         <div className="edit-btn"><button>Edit Profile</button></div>
                     </div>
                     <div className="bar">
-                        <td onClick={() => setCreateReviewModalShow(true)} >Review</td>
+                        <td onClick={() => setCreateReviewModalShow(true)}>Review</td>
                         <td onClick={() => window.location.href = "#activity"}>Activity</td>
                         <td>Socials</td>
                         <td>Followers: 0</td>
@@ -91,6 +117,8 @@ function Profile() {
                         )}
                     </div>
                 </div>
+                </>
+                )}
             </div>
         </ThemeProvider>
     )

@@ -42,16 +42,8 @@
     background-color: #f5f5f5;
 }
 
-.buttons .login-btn {
-    margin: 0 10px;
-}
-
-.buttons .login-btn, .register-btn, .genres-btn {
-    margin-right: 10px;
-}
-
-.buttons .register-btn, .discounts-btn, .profile-btn {
-    margin-left: 10px;
+.topreview-btn, .profile-btn, .logout-btn, .login-btn, .register-btn {
+    margin: 10px;
 }
 
 .buttons button:hover {

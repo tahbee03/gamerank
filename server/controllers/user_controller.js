@@ -31,13 +31,49 @@ const getUserByID = async (req, res) => {
     }
 };
 
+const calculateTopReviewers = async () => {
+  try {
+    const topReviewers = await User.aggregate([
+      { 
+        $match: { 
+          reviews: { $type: 'number', $gte: 1 }
+        } 
+      },
+      {
+        $project: {
+          username: 1,
+          reviewCount: '$reviews'
+        }
+      },
+      { $sort: { reviewCount: -1 } }, 
+      { $limit: 10 } 
+    ]);
+
+    return topReviewers;
+  } catch (error) {
+    console.error(error);
+    throw new Error('Error calculating top reviewers');
+  }
+};
+
+// Get top reviewers by review count
+const getTopReviewers = async (req, res) => {
+  try {
+    const topReviewers = await calculateTopReviewers();
+    res.json(topReviewers);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 // Login functionality
 const userLogin = async (req, res) => {
     // TODO: Revise with legit authentication
-    const {email, password} = req.body;
+    const {username, password} = req.body;
 
     try {
-        const user = await User.findOne({email});
+        const user = await User.findOne({username});
         
         if(!user) res.status(404).json({error: "No such user!"});
         else if(password != user.password) res.status(400).json({error: "Incorrect password!"});
@@ -97,5 +133,53 @@ const deleteUser = async (req, res) => {
     }
 };
 
+// Follow user
+const followUser = async (req, res) => {
+    const { id } = req.params;
+    const { userIdToFollow } = req.body;
+    try {
+      const user = await User.findById(id);
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Check if the user is already following the target user
+      if (user.following.includes(userIdToFollow)) {
+        return res.status(400).json({ error: 'Already following this user' });
+      }
+  
+      user.following.push(userIdToFollow);
+      await user.save();
+  
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ error: 'Server Error' });
+    }
+  };
+  
+  // Unfollow user
+  const unfollowUser = async (req, res) => {
+    const { id } = req.params;
+    const { userIdToUnfollow } = req.body;
+    try {
+      const user = await User.findById(id);
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Check if the user is not following the target user
+      if (!user.following.includes(userIdToUnfollow)) {
+        return res.status(400).json({ error: 'Not following this user' });
+      }
+  
+      user.following = user.following.filter(userId => userId !== userIdToUnfollow);
+      await user.save();
+  
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ error: 'Server Error' });
+    }
+  };
+
 // Export functions to be used in other modules
-module.exports = {getUsers, getUserByID, userLogin, userRegister, updateUser, deleteUser};
+module.exports = {getUsers, getTopReviewers, getUserByID, userLogin, userRegister, updateUser, deleteUser, followUser, unfollowUser};

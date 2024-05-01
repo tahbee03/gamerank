@@ -9,7 +9,7 @@ import "./Login.css";
 const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server via environment variable
 
 function Login(props) {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState(null);
   const navigate = useNavigate(); // Needed to redirect to another page
@@ -27,7 +27,7 @@ function Login(props) {
     const response = await fetch(`${server}users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ username, password })
     });
     const data = await response.json();
 
@@ -37,7 +37,7 @@ function Login(props) {
     }
     else {
       sessionStorage.setItem("user", JSON.stringify(data)); // Stores user in browser session storage
-      navigate("/Profile");
+      navigate(`/Profile/${username}`);
     }
 
   }
@@ -58,12 +58,12 @@ function Login(props) {
       </Modal.Header>
       <Modal.Body>
         <InputGroup size="md" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-sm">Email</InputGroup.Text>
+          <InputGroup.Text id="inputGroup-sizing-sm">Username</InputGroup.Text>
           <Form.Control
             aria-label="Small"
-            placeholder="Email"
+            placeholder="Username"
             aria-describedby="inputGroup-sizing-sm"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </InputGroup>
         <InputGroup>
