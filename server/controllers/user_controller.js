@@ -36,7 +36,7 @@ const calculateTopReviewers = async () => {
     const topReviewers = await User.aggregate([
       { 
         $match: { 
-          reviews: { $type: 'number', $gte: 1 }
+          reviews: { $type: 'number', $gte: 0 }
         } 
       },
       {
@@ -46,7 +46,7 @@ const calculateTopReviewers = async () => {
         }
       },
       { $sort: { reviewCount: -1 } }, 
-      { $limit: 10 } 
+      // { $limit: 10 } 
     ]);
 
     return topReviewers;
