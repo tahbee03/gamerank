@@ -1,0 +1,32 @@
+#submit {
+    display:flex;
+    justify-content: flex-start;
+}
+
+#title{
+    display: flex;
+    text-align: center; 
+    justify-content: space-around;
+}
+
+.selected-game {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    border: 1px black solid;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(200, 200, 200);
+}
+
+.selected-game .game-pic {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.material-symbols-outlined.x-symbol {
+    color: black;
+    cursor: pointer;
+}

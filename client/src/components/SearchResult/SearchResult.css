@@ -1,0 +1,30 @@
+.search-result {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    border: 1px black solid;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.search-result:hover {
+    background-color: rgb(200, 200, 200);
+    cursor: pointer;
+}
+
+.search-result .col-6 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-result .game-pic {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.search-result p {
+    margin: 0;
+}

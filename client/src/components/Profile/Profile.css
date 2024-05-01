@@ -1,0 +1,113 @@
+.top {
+    display: flex;
+    align-items: center;
+}
+
+.profile {
+    width: 25%;
+    height: 45%;
+    /* border: 3px solid #73AD21; */
+    padding: 10px;
+    padding-top: 50px;
+    display: inline-block;
+
+}
+
+.profile img {
+    border: 2px solid;
+    border-radius: 50%;
+    border-color: #5866e7;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+
+}
+
+.profile .name {
+    text-align: center;
+    font-size: 25px;
+    padding-top: 15px;
+}
+
+.profile .edit-btn {
+    text-align: center;
+    padding-top: 15px;
+}
+
+.bar {
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    vertical-align: middle;
+    background-color: #5866e7;
+    color: #ebe770;
+}
+
+
+.divider {
+    border: 1px solid;
+}
+
+.section {
+    margin: auto;
+    width: 95%;
+    padding: 10px;
+    padding-top: 50px;
+}
+
+.section-title {
+    text-align:left;
+    margin-bottom: -15px;
+}
+
+.rct-act {
+    /* border: 2px solid black; */
+    display: flex;
+    
+}
+
+.act {
+    /* border: 2px solid green; */
+    margin: 0px 15px;
+    width: 150px;
+    height: 300px;
+    padding: 0 0;
+}
+
+.act img {
+    /* border: 2px solid red; */
+    background-color: lightgrey;
+    display: block;
+
+    margin-bottom: 5px;
+    width: 100%;
+    height: 90%;
+
+}
+
+.act.col {
+    padding: 0 0;
+}
+
+.ranking {
+    display: flex;
+    align-items: center;
+}
+
+.spoilers {
+    color: lightgrey;
+}
+
+td {
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+td:hover {
+    background-color: #ebe770;
+    color: #5866e7;
+}
