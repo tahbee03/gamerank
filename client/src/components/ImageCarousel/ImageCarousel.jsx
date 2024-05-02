@@ -31,7 +31,7 @@ export default function ImageCarousel() {
     // console.log(d.results.filter((_, i) => (added.includes(i))));
     setData(d.results.filter((_, i) => (added.includes(i))));
     setLoading(false);
-  } 
+  }
 
   useEffect(() => {
     fetchData();
@@ -52,7 +52,9 @@ export default function ImageCarousel() {
           <Carousel>
             {data.map((game, i) => (
               <Carousel.Item key={i}>
-                <img src={game.background_image} />
+                <a href={`/Games/${game.id}`}>
+                  <img src={game.background_image} />
+                </a>
                 <Carousel.Caption>
                   <h3>{game.name}</h3>
                 </Carousel.Caption>

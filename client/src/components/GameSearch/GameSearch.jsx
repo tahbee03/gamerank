@@ -48,6 +48,7 @@ function GameSearch({ setGameData }) {
             results.map((game, i) => (
               <SearchResult
                 key={i}
+                id={game.id}
                 name={game.name}
                 image={game.background_image}
                 handleClick={handleClick}

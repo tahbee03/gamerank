@@ -58,7 +58,6 @@ function Profile() {
             }
             setLoading(false);
         }
-
         if (user != null) fetchData();
     }, [user]);
 
@@ -154,6 +153,7 @@ function Profile() {
                                 {!(loading) && (rankings.length > 0) && (
                                     rankings.map(r => (
                                         <Ranking
+                                            id={r.gameID}
                                             picurl={r.picUrl}
                                             title={r.title}
                                             rank={r.rank}

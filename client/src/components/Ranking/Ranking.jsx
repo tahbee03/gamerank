@@ -4,7 +4,7 @@ import "./Ranking.css";
 import { format } from "date-fns"; // format()
 import { useState } from "react";
 
-export default function Ranking({ picurl, title, rank, date, spoiler, desc }) {
+export default function Ranking({ id, picurl, title, rank, date, spoiler, desc }) {
     const [spoilerState, setSpoilerState] = useState(spoiler);
 
     let stars = [];
@@ -15,7 +15,9 @@ export default function Ranking({ picurl, title, rank, date, spoiler, desc }) {
 
     return (
         <div className="ranking col-4">
-            <img className="game-pic" src={picurl} alt="game-pic" />
+            <a href={`/Games/${id}`}>
+                <img className="game-pic" src={picurl} alt="game-pic" />
+            </a>
             <h3 className="game-title">{title}</h3>
             <div>{stars}</div>
             <p className="date">Posted on {format(new Date(date), "MM/dd/yyyy")}</p>
