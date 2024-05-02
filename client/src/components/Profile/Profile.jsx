@@ -121,11 +121,15 @@ function Profile() {
                                 {(currentUser != null) && (JSON.parse(currentUser).username == username) && (
                                     <td className="clickable" onClick={() => setCreateReviewModalShow(true)}>Review</td>
                                 )}
-                                {(currentUser != null) && (JSON.parse(currentUser).username != username) && (!JSON.parse(currentUser).following.includes(user._id)) && (
+                                {(currentUser != null) && (JSON.parse(currentUser).username != username) && !user.following && (
                                     <td className="clickable" onClick={handleFollow}>Follow</td>
                                 )}
-                                {(currentUser != null) && (JSON.parse(currentUser).username != username) && (JSON.parse(currentUser).following.includes(user._id)) && (
-                                    <td className="clickable" onClick={handleUnfollow}>Unfollow</td>
+                                {(currentUser != null) && (JSON.parse(currentUser).username != username) && user.following && (
+                                    JSON.parse(currentUser).following.includes(user._id) ? (
+                                        <td className="clickable" onClick={handleUnfollow}>Unfollow</td>
+                                    ) : (
+                                        <td className="clickable" onClick={handleFollow}>Follow</td>
+                                    )
                                 )}
                                 <td className="clickable">Activity</td>
                                 <td className="clickable">Socials</td>
