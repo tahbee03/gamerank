@@ -18,7 +18,7 @@ function Review(props) {
     const response = await fetch(`${server}rankings`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ author: JSON.parse(user).id, picUrl: gameData.image, title: gameData.name, rank, spoiler, desc })
+      body: JSON.stringify({ author: JSON.parse(user).id, picUrl: gameData.image, title: gameData.name, rank, spoiler, desc, gameID: gameData.id })
     });
     const data = await response.json();
 

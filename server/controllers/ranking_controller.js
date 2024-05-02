@@ -4,13 +4,13 @@ const mongoose = require("mongoose");
 
 const getRankings = async (req, res) => {
     try {
-        const rankings = await Ranking.find({}).sort({createdAt: -1});
+        const rankings = await Ranking.find({}).sort({ createdAt: -1 });
 
-        if(rankings.length == 0) res.status(404).json({msg: "There are no rankings!"});
+        if (rankings.length == 0) res.status(404).json({ msg: "There are no rankings!" });
         else res.status(200).json(rankings);
     } catch (error) {
         console.log(error.message);
-        res.status(500).json({error});
+        res.status(500).json({ error });
     }
 };
 
@@ -21,7 +21,7 @@ const getRankingByID = async (req, res) => {
 const createRanking = async (req, res) => {
     console.log(req.body);
 
-    const {title, author, picUrl, rank, desc, spoiler} = req.body;
+    const { title, author, picUrl, rank, desc, spoiler, gameID } = req.body;
 
     try {
         const ranking = await Ranking.create({
@@ -30,7 +30,8 @@ const createRanking = async (req, res) => {
             picUrl,
             rank,
             desc,
-            spoiler
+            spoiler,
+            gameID
         });
 
         await User.findByIdAndUpdate(author, { $inc: { reviews: 1 } });
@@ -38,7 +39,7 @@ const createRanking = async (req, res) => {
 
     } catch (error) {
         console.log(error.message);
-        res.status(500).json({error: error.message});
+        res.status(500).json({ error: error.message });
     }
 
 };
@@ -48,4 +49,4 @@ const deleteRanking = async (req, res) => {
 };
 
 // Export functions to be used in other modules
-module.exports = {getRankings, getRankingByID, createRanking, deleteRanking};
+module.exports = { getRankings, getRankingByID, createRanking, deleteRanking };

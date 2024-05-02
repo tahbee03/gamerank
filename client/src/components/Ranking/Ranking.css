@@ -8,9 +8,14 @@
     height: 400px;
 }
 
-.ranking .game-pic {
+.ranking a {
     width: 100%;
     height: 50%;
+}
+
+.ranking .game-pic {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     border-radius: 5px;
 }

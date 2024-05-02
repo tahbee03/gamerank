@@ -38,22 +38,26 @@ export default function Featured() {
                     <Row>
                         {data.filter((_, i) => (i > -1 && i < 3)).map((game, i) => (
                             <Col key={i}>
-                                <FeaturedGame
-                                    title={game.name}
-                                    picture={game.background_image}
-                                    reviews={game.reviews_count}
-                                />
+                                <a href={`/Games/${game.id}`}>
+                                    <FeaturedGame
+                                        title={game.name}
+                                        picture={game.background_image}
+                                        reviews={game.reviews_count}
+                                    />
+                                </a>
                             </Col>
                         ))}
                     </Row>
                     <Row>
                         {data.filter((_, i) => (i > 2 && i < 6)).map((game, i) => (
                             <Col key={i}>
-                                <FeaturedGame
-                                    title={game.name}
-                                    picture={game.background_image}
-                                    reviews={game.reviews_count}
-                                />
+                                <a href={`/Games/${game.id}`}>
+                                    <FeaturedGame
+                                        title={game.name}
+                                        picture={game.background_image}
+                                        reviews={game.reviews_count}
+                                    />
+                                </a>
                             </Col>
                         ))}
                     </Row>

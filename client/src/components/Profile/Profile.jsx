@@ -56,10 +56,10 @@ function Profile() {
             }
             setLoading(false);
         }
-        
+
         fetchData();
     }, [user]);
-    
+
     return (
         <ThemeProvider
             breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
@@ -69,55 +69,56 @@ function Profile() {
                 <Navbar />
                 {(!user) && (
                     <p>Loading...</p>
-                )} 
+                )}
                 {(user) && (
-                <>
-                <div className="top">
-                    <div className="profile">
-                        <img src={defaultAvatar} alt="Avatar"></img>
-                        <div className="name">{user.username}</div>
-                        <div className="edit-btn"><button>Edit Profile</button></div>
-                    </div>
-                    <div className="bar">
-                        <td onClick={() => setCreateReviewModalShow(true)}>Review</td>
-                        <td onClick={() => window.location.href = "#activity"}>Activity</td>
-                        <td>Socials</td>
-                        <td>Followers: 0</td>
-                        <td>Following: 0</td>
-                    </div>
-                    <Review
-                        show={createReviewModalShow}
-                        onHide={() => setCreateReviewModalShow(false)}
-                    />
-                </div>
-
-                <div className="section" id="ranking">
-                    <p className="section-title">Recent Rankings</p>
-                    <hr className="divider" />
-                    <div className="row">
-                        {(loading) && (
-                            <div className="spinner-border" role="status">
-                                <span className="visually-hidden">Loading...</span>
+                    <>
+                        <div className="top">
+                            <div className="profile">
+                                <img src={defaultAvatar} alt="Avatar"></img>
+                                <div className="name">{user.username}</div>
+                                <div className="edit-btn"><button>Edit Profile</button></div>
                             </div>
-                        )}
-                        {!(loading) && (rankings.length == 0) && (
-                            <p>No rankings!</p>
-                        )}
-                        {!(loading) && (rankings.length > 0) && (
-                            rankings.map(r => (
-                                <Ranking
-                                    picurl={r.picUrl}
-                                    title={r.title}
-                                    rank={r.rank}
-                                    date={r.createdAt}
-                                    spoiler={r.spoiler}
-                                    desc={r.desc}
-                                />
-                            ))
-                        )}
-                    </div>
-                </div>
-                </>
+                            <div className="bar">
+                                <td onClick={() => setCreateReviewModalShow(true)}>Review</td>
+                                <td onClick={() => window.location.href = "#activity"}>Activity</td>
+                                <td>Socials</td>
+                                <td>Followers: 0</td>
+                                <td>Following: 0</td>
+                            </div>
+                            <Review
+                                show={createReviewModalShow}
+                                onHide={() => setCreateReviewModalShow(false)}
+                            />
+                        </div>
+
+                        <div className="section" id="ranking">
+                            <p className="section-title">Recent Rankings</p>
+                            <hr className="divider" />
+                            <div className="row">
+                                {(loading) && (
+                                    <div className="spinner-border" role="status">
+                                        <span className="visually-hidden">Loading...</span>
+                                    </div>
+                                )}
+                                {!(loading) && (rankings.length == 0) && (
+                                    <p>No rankings!</p>
+                                )}
+                                {!(loading) && (rankings.length > 0) && (
+                                    rankings.map(r => (
+                                        <Ranking
+                                            id={r.gameID}
+                                            picurl={r.picUrl}
+                                            title={r.title}
+                                            rank={r.rank}
+                                            date={r.createdAt}
+                                            spoiler={r.spoiler}
+                                            desc={r.desc}
+                                        />
+                                    ))
+                                )}
+                            </div>
+                        </div>
+                    </>
                 )}
             </div>
         </ThemeProvider>
