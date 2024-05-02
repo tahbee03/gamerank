@@ -16,13 +16,14 @@ const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server vi
 
 
 function Profile() {
+    const { username } = useParams();
     const [createReviewModalShow, setCreateReviewModalShow] = useState(false);
     const [rankings, setRankings] = useState([]);
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
     const currentUser = sessionStorage.getItem("user");
-    const { username } = useParams();
+    const [loading, setLoading] = useState(false);
 
+    // Fetch user's data to load on page
     useEffect(() => {
         async function fetchData() {
             setLoading(true);
@@ -41,6 +42,7 @@ function Profile() {
         fetchData();
     }, []);
 
+    // Fetch user's rankings to load on page when user data is loaded
     useEffect(() => {
         async function fetchData() {
             setLoading(true);
@@ -56,9 +58,46 @@ function Profile() {
             }
             setLoading(false);
         }
-
-        fetchData();
+        if (user != null) fetchData();
     }, [user]);
+
+    async function handleFollow() {
+        try {
+            const response = await fetch(`${server}users/follow/${JSON.parse(currentUser).id}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ userIdToFollow: user._id })
+            });
+            const data = await response.json();
+
+            if (!response.ok) throw new Error(data);
+            else {
+                window.sessionStorage.setItem("user", JSON.stringify(data));
+                window.location.reload();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function handleUnfollow() {
+        try {
+            const response = await fetch(`${server}users/unfollow/${JSON.parse(currentUser).id}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ userIdToUnfollow: user._id })
+            });
+            const data = await response.json();
+
+            if (!response.ok) throw new Error(data);
+            else {
+                window.sessionStorage.setItem("user", JSON.stringify(data));
+                window.location.reload();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <ThemeProvider
@@ -79,11 +118,19 @@ function Profile() {
                                 <div className="edit-btn"><button>Edit Profile</button></div>
                             </div>
                             <div className="bar">
-                                <td onClick={() => setCreateReviewModalShow(true)}>Review</td>
-                                <td onClick={() => window.location.href = "#activity"}>Activity</td>
-                                <td>Socials</td>
-                                <td>Followers: 0</td>
-                                <td>Following: 0</td>
+                                {(currentUser != null) && (JSON.parse(currentUser).username == username) && (
+                                    <td className="clickable" onClick={() => setCreateReviewModalShow(true)}>Review</td>
+                                )}
+                                {(currentUser != null) && (JSON.parse(currentUser).username != username) && (!JSON.parse(currentUser).following.includes(user._id)) && (
+                                    <td className="clickable" onClick={handleFollow}>Follow</td>
+                                )}
+                                {(currentUser != null) && (JSON.parse(currentUser).username != username) && (JSON.parse(currentUser).following.includes(user._id)) && (
+                                    <td className="clickable" onClick={handleUnfollow}>Unfollow</td>
+                                )}
+                                <td className="clickable">Activity</td>
+                                <td className="clickable">Socials</td>
+                                <td>Followers: {user.followers.length}</td>
+                                <td>Following: {user.following.length}</td>
                             </div>
                             <Review
                                 show={createReviewModalShow}
