@@ -59,7 +59,6 @@ export default function GamePage() {
                     </Row>
                 </Container>
             )}
-            <Footer />
         </>
     );
 }

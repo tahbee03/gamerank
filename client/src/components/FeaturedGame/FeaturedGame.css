@@ -10,7 +10,7 @@
     color: #ebe770;
 }
 
-.featured-game .game-pic {
+.featured-game .featured-game-pic {
     width: 100%;
     height: 60%;
     object-fit: cover;
@@ -22,6 +22,6 @@
     margin-bottom: 3px;
 }
 
-.featured-game .game-title {
+.featured-game .featured-game-title {
     font-weight: bold;
 }
