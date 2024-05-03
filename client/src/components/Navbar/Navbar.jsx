@@ -1,9 +1,10 @@
 import './Navbar.css';
-import {useNavigate} from 'react-router-dom';
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import Login from '../Login/Login.jsx';
 import Register from '../Register/Register.jsx';
 import TopReviewers from '../TopReviewers/TopReviewers.jsx';
+
 function Navbar() {
   const [modalShow, setModalShow] = useState(false);
   const [modalShow_two, setModalShow_two] = useState(false);

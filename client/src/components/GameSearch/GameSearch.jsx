@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
+import { useState } from "react";
 import SearchResult from "../SearchResult/SearchResult";
 const api = import.meta.env.VITE_API_URL; // URL to game API via environment variable
 const key = import.meta.env.VITE_API_KEY; // Key for game API

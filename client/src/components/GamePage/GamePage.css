@@ -1,0 +1,44 @@
+.game-container{
+    margin-top: 20px;
+}
+
+.col{
+    margin: 0 15;
+}
+
+.game-art-column {
+    background-color: #5866e7;
+    color: #ebe770;
+    border-radius: 5px;
+}
+
+.game-details-column {
+    background-color: #ebe770;
+    color: #ebe770;
+    padding-top: 10px;
+    border-radius: 5px;
+}
+
+.game-pic{
+    width: -webkit-fill-available;
+}
+
+.game-title, .game-publisher, .game-released-date,
+.game-description, .game-reviews{
+    background-color: #c882ed;
+    border-radius: 5px;
+}
+
+.game-publisher, .game-released-date,
+.game-reviews{
+    padding: 10px 0px;
+}
+
+.game-title{
+    padding-bottom: 10px;
+}
+
+.game-description{
+    padding: 15px;
+}
+
