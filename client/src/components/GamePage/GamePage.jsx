@@ -45,16 +45,19 @@ export default function GamePage() {
             )}
             {!(loading) && (game) && (
                 <Container className="game-container">
-                    <Row className='game-row'>
+                    <Row className='game-row-1' md={12}>
+                        <Col>
+                            <h1 className="game-title">{game.name}</h1>
+                            <h2 className="game-publisher">Developed by {game.publishers[0].name}, Released: {format(new Date(game.released), "yyyy")}</h2>
+                            <h3 className="game-released-date">Total Reviews: {game.reviews_count}</h3>
+                        </Col>
+                    </Row>
+                    <Row className='game-row-2'>
                         <Col className='game-art-column d-flex align-items-center' md={6}>
                             <img className="game-pic" src={game.background_image} alt="cover-art-for-the-game" />
                         </Col>
                         <Col className='game-details-column' md={6}>
-                            <h1 className="game-title">{game.name}</h1>
-                            <h3 className="game-publisher">Developed by {game.publishers[0].name}</h3>
-                            <h4 className="game-released-date">Released: {format(new Date(game.released), "yyyy")}</h4>
                             <p className="game-description">{game.description_raw}</p>
-                            <p className="game-reviews">{game.reviews_count} reviews</p>
                         </Col>
                     </Row>
                 </Container>
