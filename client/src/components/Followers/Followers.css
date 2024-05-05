@@ -1,0 +1,8 @@
+.followers-clickable {
+    cursor: pointer;
+    
+}
+
+.followers-clickable:hover {
+    color: #5866e7;
+}

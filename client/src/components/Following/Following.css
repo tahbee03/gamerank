@@ -1,0 +1,8 @@
+.following-clickable {
+    cursor: pointer;
+    
+}
+
+.following-clickable:hover {
+    color: #5866e7;
+}

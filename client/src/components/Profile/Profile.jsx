@@ -8,6 +8,8 @@ import defaultAvatar from '/default-avatar.jpg';
 // import { BsStarFill } from "react-icons/bs";
 import { useState, useEffect } from 'react';
 import Review from '../Review/Review.jsx';
+import Followers from '../Followers/Followers.jsx';
+import Following from '../Following/Following.jsx';
 import { useParams } from "react-router-dom";
 import StarRating from '../StarRating.jsx';
 import './Profile.css';
@@ -18,6 +20,8 @@ const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server vi
 function Profile() {
     const { username } = useParams();
     const [createReviewModalShow, setCreateReviewModalShow] = useState(false);
+    const [createFollowersModalShow, setCreateFollowersModalShow] = useState(false);
+    const [createFollowingModalShow, setCreateFollowingModalShow] = useState(false);
     const [rankings, setRankings] = useState([]);
     const [user, setUser] = useState(null);
     const currentUser = sessionStorage.getItem("user");
@@ -133,12 +137,20 @@ function Profile() {
                                 )}
                                 <td className="clickable">Activity</td>
                                 <td className="clickable">Socials</td>
-                                <td>Followers: {user.followers.length}</td>
-                                <td>Following: {user.following.length}</td>
+                                <td className="clickable" onClick={() => setCreateFollowersModalShow(true)}>Followers: {user.followers.length}</td>
+                                <td className="clickable" onClick={() => setCreateFollowingModalShow(true)}>Following: {user.following.length}</td>
                             </div>
                             <Review
                                 show={createReviewModalShow}
                                 onHide={() => setCreateReviewModalShow(false)}
+                            />
+                            <Followers
+                                show={createFollowersModalShow}
+                                onHide={() => setCreateFollowersModalShow(false)}
+                            />
+                            <Following
+                                show={createFollowingModalShow}
+                                onHide={() => setCreateFollowingModalShow(false)}
                             />
                         </div>
 

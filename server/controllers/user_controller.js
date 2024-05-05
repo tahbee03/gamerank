@@ -254,5 +254,60 @@ const unfollowUser = async (req, res) => {
   }
 };
 
+// get user followers
+const getUserFollowers = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "Invalid user ID" });
+  }
+
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const followers = await User.find({ _id: { $in: user.followers } });
+
+    if (!followers || followers.length === 0) {
+      return res.status(404).json({ msg: "No followers found for this user" });
+    }
+
+    res.status(200).json(followers);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: "Server Error" });
+  }
+};
+
+// get user following
+
+const getUserFollowing = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "Invalid user ID" });
+  }
+
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const following = await User.find({ _id: { $in: user.following } });
+
+    if (!following || following.length === 0) {
+      return res.status(404).json({ msg: "No following found for this user" });
+    }
+
+    res.status(200).json(following);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: "Server Error" });
+  }
+};
+
 // Export functions to be used in other modules
-module.exports = { getUsers, getTopReviewers, getUserByID, userLogin, userRegister, updateUser, deleteUser, followUser, unfollowUser };
+module.exports = { getUsers, getTopReviewers, getUserByID, userLogin, userRegister, updateUser, deleteUser, followUser, unfollowUser, getUserFollowers, getUserFollowing };
