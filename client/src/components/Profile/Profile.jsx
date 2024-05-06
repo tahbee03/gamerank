@@ -121,8 +121,12 @@ function Profile() {
                             <div className="profile">
                                 <img src={defaultAvatar} alt="Avatar"></img>
                                 <div className="name">{user.username}</div>
-                                <div className="edit-btn"><button>Edit Profile</button></div>
-                                <div className="delete-btn" onClick={() => setCreateDeleteAccountModalShow(true)}><button>Delete Account</button></div>
+                                {(currentUser != null) && (JSON.parse(currentUser).username == username) && (
+                                    <>
+                                        <div className="edit-btn"><button>Edit Profile</button></div>
+                                        <div className="delete-btn" onClick={() => setCreateDeleteAccountModalShow(true)}><button>Delete Account</button></div>
+                                    </>
+                                )}
                             </div>
                             <div className="bar">
                                 {(currentUser != null) && (JSON.parse(currentUser).username == username) && (
