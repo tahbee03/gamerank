@@ -1,16 +1,18 @@
 /* eslint-disable react/prop-types */
-import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
+import { BsStarFill, BsStar, BsStarHalf, BsTrash } from "react-icons/bs";
 import "./Ranking.css";
 import { format } from "date-fns"; // format()
 import { useState } from "react";
+const server = import.meta.env.VITE_BACKEND_SERVER;
 
-export default function Ranking({ id, picurl, title, rank, date, spoiler, desc }) {
+export default function Ranking({ id, author, gameID, picurl, title, rank, date, spoiler, desc }) {
     const [spoilerState, setSpoilerState] = useState(spoiler);
+    const [loadingDelete, setLoadingDelete] = useState(false);
     const hasHalfStar = rank % 1 !== 0;
     let stars = [];
     let i = 0;
 
-    if(hasHalfStar) {
+    if (hasHalfStar) {
         for (; i < rank; i++) stars.push(<BsStarFill key={i} />);
         stars.push(<BsStarHalf key={i} />);
         for (; i < 4; i++) stars.push(<BsStar key={i} />);
@@ -19,9 +21,29 @@ export default function Ranking({ id, picurl, title, rank, date, spoiler, desc }
         for (; i < 5; i++) stars.push(<BsStar key={i} />);
     }
 
+    async function handleDelete() {
+        setLoadingDelete(true);
+        try {
+            const response = await fetch(`${server}rankings/${id}`, {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ author })
+            });
+            await response.json();
+
+            if (!response.ok) {
+                setLoadingDelete(false);
+                throw new Error("Failed to delete ranking.");
+            }
+            else window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="ranking col-4">
-            <a href={`/Games/${id}`}>
+            <a href={`/Games/${gameID}`}>
                 <img className="game-pic" src={picurl} alt="game-pic" />
             </a>
             <h3 className="game-title">{title}</h3>
@@ -32,6 +54,14 @@ export default function Ranking({ id, picurl, title, rank, date, spoiler, desc }
             )}
             {!(spoilerState) && (
                 <p className="description">{desc}</p>
+            )}
+            {(loadingDelete) && (
+                <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            )}
+            {!(loadingDelete) && (
+                <BsTrash className="trash-icon" onClick={handleDelete} />
             )}
         </div>
     );

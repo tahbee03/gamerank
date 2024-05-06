@@ -169,7 +169,9 @@ function Profile() {
                                 {!(loading) && (rankings.length > 0) && (
                                     rankings.map(r => (
                                         <Ranking
-                                            id={r.gameID}
+                                            id={r._id}
+                                            author={r.author}
+                                            gameID={r.gameID}
                                             picurl={r.picUrl}
                                             title={r.title}
                                             rank={r.rank}
