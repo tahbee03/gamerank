@@ -9,12 +9,7 @@
     justify-content: space-around;
 }
 
-.error-msg-cont {
-    background-color: rgb(255, 124, 124);
-    border-radius: 5px;
-    padding: 5px;
-}
-
 .error-msg {
+    color: red;
     margin: 0;
 }

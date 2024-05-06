@@ -96,9 +96,7 @@ function Register(props) {
           </Form>
         </InputGroup>
         {(msg) && (
-          <div className="error-msg-cont">
-            <p className="error-msg">{msg}</p>
-          </div>
+          <p className="error-msg">{msg}</p>
         )}
       </Modal.Body>
       <Modal.Footer>

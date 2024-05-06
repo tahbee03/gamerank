@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import Review from '../Review/Review.jsx';
 import Followers from '../Followers/Followers.jsx';
 import Following from '../Following/Following.jsx';
+import DeleteAccount from '../DeleteAccount/DeleteAccount.jsx';
 import { useParams } from "react-router-dom";
 import StarRating from '../StarRating.jsx';
 import './Profile.css';
@@ -22,6 +23,7 @@ function Profile() {
     const [createReviewModalShow, setCreateReviewModalShow] = useState(false);
     const [createFollowersModalShow, setCreateFollowersModalShow] = useState(false);
     const [createFollowingModalShow, setCreateFollowingModalShow] = useState(false);
+    const [createDeleteAccountModalShow, setCreateDeleteAccountModalShow] = useState(false);
     const [rankings, setRankings] = useState([]);
     const [user, setUser] = useState(null);
     const currentUser = sessionStorage.getItem("user");
@@ -120,6 +122,7 @@ function Profile() {
                                 <img src={defaultAvatar} alt="Avatar"></img>
                                 <div className="name">{user.username}</div>
                                 <div className="edit-btn"><button>Edit Profile</button></div>
+                                <div className="delete-btn" onClick={() => setCreateDeleteAccountModalShow(true)}><button>Delete Account</button></div>
                             </div>
                             <div className="bar">
                                 {(currentUser != null) && (JSON.parse(currentUser).username == username) && (
@@ -151,6 +154,10 @@ function Profile() {
                             <Following
                                 show={createFollowingModalShow}
                                 onHide={() => setCreateFollowingModalShow(false)}
+                            />
+                            <DeleteAccount
+                                show={createDeleteAccountModalShow}
+                                onHide={() => setCreateDeleteAccountModalShow(false)}
                             />
                         </div>
 
