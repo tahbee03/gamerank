@@ -1,7 +1,7 @@
+import './TopReviewers.css';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate()
 import Navbar from "../Navbar/Navbar.jsx";
-import './TopReviewers.css';
 const server = import.meta.env.VITE_BACKEND_SERVER;
 
 export default function TopReviewers() {

@@ -1,6 +1,6 @@
-import Carousel from 'react-bootstrap/Carousel';
 import './ImageCarousel.css';
 import { useEffect, useState } from 'react'
+import Carousel from 'react-bootstrap/Carousel';
 const api = import.meta.env.VITE_API_URL;
 const key = import.meta.env.VITE_API_KEY;
 

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import Container from 'react-bootstrap/Container';
+import React, { useState, useEffect } from "react";
+import Row from 'react-bootstrap/Row';
 const api = import.meta.env.VITE_API_URL;
 const key = import.meta.env.VITE_API_KEY;
 
@@ -19,7 +18,7 @@ export default function GameContent() {
             try {
                 const response = await fetch(`${api}games?key=${key}`);
                 const data = await response.json();
-                setGamesData(data.results); // Assuming data.results is the array of games
+                setGamesData(data.results);
             } catch (error) {
                 setError('Failed to fetch games');
                 console.error('Error fetching data:', error);
