@@ -1,5 +1,6 @@
 const User = require("../models/user_model");
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 // Get all users
 const getUsers = async (req, res) => {
@@ -69,14 +70,18 @@ const getTopReviewers = async (req, res) => {
 
 // Login functionality
 const userLogin = async (req, res) => {
-  // TODO: Revise with legit authentication
+  const passwordCheck = async (plaintext, hash) => {
+    const match = await bcrypt.compare(plaintext, hash); // Compare password hashes
+    return match;
+  };
+
   const { username, password } = req.body;
 
   try {
     const user = await User.findOne({ username });
 
     if (!user) res.status(404).json({ error: "No such user!" });
-    else if (password != user.password) res.status(400).json({ error: "Incorrect password!" });
+    else if (!(await passwordCheck(password, user.password))) res.status(400).json({ error: "Incorrect password!" });
     else res.status(200).json({
       username: user.username,
       email: user.email,
@@ -95,7 +100,6 @@ const userLogin = async (req, res) => {
 
 // Sign up functionality
 const userRegister = async (req, res) => {
-  // TODO: Revise with legit authentication
   const { username, email, password } = req.body;
 
   try {
@@ -109,10 +113,13 @@ const userRegister = async (req, res) => {
       res.status(400).json({ error: "Email already in use!" });
     }
     else {
+      const salt = await bcrypt.genSalt(10); // Generate salt to be concatenated with password
+      const hash = await bcrypt.hash(password, salt); // Hash password and salt
+
       const user = await User.create({
         username,
         email,
-        password,
+        password: hash,
         pfp: "",
         role: "gamer"
       });

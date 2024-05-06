@@ -19,8 +19,6 @@ const getRankingByID = async (req, res) => {
 };
 
 const createRanking = async (req, res) => {
-    console.log(req.body);
-
     const { title, author, picUrl, rank, desc, spoiler, gameID } = req.body;
 
     try {
@@ -45,7 +43,23 @@ const createRanking = async (req, res) => {
 };
 
 const deleteRanking = async (req, res) => {
+    const { id } = req.params;
+    const { author } = req.body;
 
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ error: "No such ranking!" });
+
+    try {
+        const ranking = await Ranking.findOneAndDelete({ _id: id });
+
+        if (!ranking) res.status(404).json({ error: "No such ranking!" });
+        else {
+            await User.findByIdAndUpdate(author, { $inc: { reviews: -1 } });
+            res.status(200).json({ msg: "Ranking successfully deleted!" });
+        }
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ error });
+    }
 };
 
 // Export functions to be used in other modules

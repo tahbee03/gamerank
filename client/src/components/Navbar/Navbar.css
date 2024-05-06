@@ -53,3 +53,7 @@
 .buttons button:active {
     box-shadow: 0px 0px 10px 5px #ebe770;
 }
+
+.username-nav {
+    color: #5866e7;
+}

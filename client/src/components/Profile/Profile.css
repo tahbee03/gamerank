@@ -30,7 +30,7 @@
     padding-top: 15px;
 }
 
-.profile .edit-btn {
+.profile > .edit-btn, .profile > .delete-btn {
     text-align: center;
     padding-top: 15px;
 }

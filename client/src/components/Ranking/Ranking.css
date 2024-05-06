@@ -35,3 +35,15 @@
     color: gray;
     cursor: pointer;
 }
+
+.trash-icon {
+    margin: 15px;
+    transform: scale(2);
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.trash-icon:hover {
+    filter: invert(50%) sepia(100%) saturate(10000%) brightness(75%);
+    transform: scale(2.5);
+}
