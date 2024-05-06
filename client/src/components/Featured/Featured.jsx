@@ -1,9 +1,9 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import FeaturedGame from '../FeaturedGame/FeaturedGame.jsx';
 import './Featured.css';
 import { useEffect, useState } from 'react'
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import FeaturedGame from '../FeaturedGame/FeaturedGame.jsx';
+import Row from 'react-bootstrap/Row';
 
 const api = import.meta.env.VITE_API_URL;
 const key = import.meta.env.VITE_API_KEY;

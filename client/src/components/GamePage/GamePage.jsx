@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import './GamePage.css'
 import { format } from "date-fns"; // format()
-
+import { useParams } from 'react-router-dom';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Footer from '../Footer/Footer';
+import Navbar from '../Navbar/Navbar';
+import React, { useEffect, useState } from 'react';
+import Row from 'react-bootstrap/Row';
 const api = import.meta.env.VITE_API_URL;
 const key = import.meta.env.VITE_API_KEY;
 
@@ -28,7 +29,6 @@ export default function GamePage() {
             }
         }
 
-        // Fetch game data using ID when page loads
         loadGame();
     }, []);
 
@@ -45,16 +45,19 @@ export default function GamePage() {
             )}
             {!(loading) && (game) && (
                 <Container className="game-container">
-                    <Row>
-                        <Col>
-                            <img className="game-pic" src={game.background_image} alt="cover-art-for-the-game" />
-                        </Col>
+                    <Row className='game-row-1' md={12}>
                         <Col>
                             <h1 className="game-title">{game.name}</h1>
-                            <h3>Developed by {game.publishers[0].name}</h3>
-                            <h4>Released: {format(new Date(game.released), "yyyy")}</h4>
-                            <p>{game.description_raw}</p>
-                            <p>{game.reviews_count} reviews</p>
+                            <h2 className="game-publisher">Developed by {game.publishers[0].name}, Released: {format(new Date(game.released), "yyyy")}</h2>
+                            <h3 className="game-released-date">Total Reviews: {game.reviews_count}</h3>
+                        </Col>
+                    </Row>
+                    <Row className='game-row-2'>
+                        <Col className='game-art-column d-flex align-items-center' md={6}>
+                            <img className="game-pic" src={game.background_image} alt="cover-art-for-the-game" />
+                        </Col>
+                        <Col className='game-details-column' md={6}>
+                            <p className="game-description">{game.description_raw}</p>
                         </Col>
                     </Row>
                 </Container>

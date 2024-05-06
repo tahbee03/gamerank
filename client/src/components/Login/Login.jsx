@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import "./Login.css";
 import { useNavigate } from "react-router-dom"; // useNavigate()
+import { useState } from 'react';
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import Modal from "react-bootstrap/Modal";
 import ModalTitle from "react-bootstrap/esm/ModalTitle";
-import "./Login.css";
+
 const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server via environment variable
 
 function Login(props) {

@@ -1,0 +1,30 @@
+.game-container{
+    padding: 20px 0px;
+    color: #ebe770;
+}
+
+.col{
+    margin: 0 15;
+}
+
+.game-details-column {
+    padding-top: 10px;
+}
+
+.game-pic{
+    width: -webkit-fill-available;
+}
+
+.game-publisher, .game-released-date,
+.game-reviews{
+    padding: 10px 0px;
+}
+
+.game-title{
+    padding-bottom: 10px;
+}
+
+.game-description{
+    padding: 15px;
+}
+

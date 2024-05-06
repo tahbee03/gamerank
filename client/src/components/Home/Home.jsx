@@ -1,8 +1,8 @@
 import './Home.css'
-import Navbar from '../Navbar/Navbar.jsx'
-import ImageCarousel from '../ImageCarousel/ImageCarousel.jsx'
 import Featured from '../Featured/Featured.jsx'
 import Footer from '../Footer/Footer.jsx'
+import ImageCarousel from '../ImageCarousel/ImageCarousel.jsx'
+import Navbar from '../Navbar/Navbar.jsx'
 
 function Home() {
     return (

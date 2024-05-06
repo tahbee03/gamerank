@@ -73,3 +73,7 @@ a{
 .flip-card--techSection, h1{
   padding-top: 15px;
 }
+
+h5{
+  padding-top: 10px;
+}
