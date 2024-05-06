@@ -1,5 +1,5 @@
 import './Navbar.css';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Login from '../Login/Login.jsx';
 import Register from '../Register/Register.jsx';
@@ -36,7 +36,7 @@ function Navbar() {
         {(user) && (
           <>
             <button onClick={() => window.location.href = "/TopReviewers"} className="topreview-btn">Top Reviewers</button>
-            <button onClick={() => window.location.href = `/Profile/${JSON.parse(user).username}`} className="profile-btn">Profile</button>
+            <button onClick={() => window.location.href = `/Profile/${JSON.parse(user).username}`} className="profile-btn">Profile &#183; <span className="username-nav">{JSON.parse(user).username}</span></button>
             <button onClick={handleLogout} className="logout-btn">Logout</button>
           </>
         )}
