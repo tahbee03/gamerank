@@ -185,6 +185,7 @@ function Profile() {
                                             date={r.createdAt}
                                             spoiler={r.spoiler}
                                             desc={r.desc}
+                                            canDelete={(currentUser != null) && (JSON.parse(currentUser).username == username)}
                                         />
                                     ))
                                 )}

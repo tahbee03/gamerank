@@ -5,7 +5,7 @@ import { format } from "date-fns"; // format()
 import { useState } from "react";
 const server = import.meta.env.VITE_BACKEND_SERVER;
 
-export default function Ranking({ id, author, gameID, picurl, title, rank, date, spoiler, desc }) {
+export default function Ranking({ id, author, gameID, picurl, title, rank, date, spoiler, desc, canDelete }) {
     const [spoilerState, setSpoilerState] = useState(spoiler);
     const [loadingDelete, setLoadingDelete] = useState(false);
     const hasHalfStar = rank % 1 !== 0;
@@ -55,13 +55,17 @@ export default function Ranking({ id, author, gameID, picurl, title, rank, date,
             {!(spoilerState) && (
                 <p className="description">{desc}</p>
             )}
-            {(loadingDelete) && (
-                <div className="spinner-border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            )}
-            {!(loadingDelete) && (
-                <BsTrash className="trash-icon" onClick={handleDelete} />
+            {(canDelete) && (
+                <>
+                    {(loadingDelete) && (
+                        <div className="spinner-border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                    )}
+                    {!(loadingDelete) && (
+                        <BsTrash className="trash-icon" onClick={handleDelete} />
+                    )}
+                </>
             )}
         </div>
     );
