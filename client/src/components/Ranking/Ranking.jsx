@@ -1,17 +1,23 @@
 /* eslint-disable react/prop-types */
-import { BsStarFill, BsStar } from "react-icons/bs";
+import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 import "./Ranking.css";
 import { format } from "date-fns"; // format()
 import { useState } from "react";
 
 export default function Ranking({ id, picurl, title, rank, date, spoiler, desc }) {
     const [spoilerState, setSpoilerState] = useState(spoiler);
-
+    const hasHalfStar = rank % 1 !== 0;
     let stars = [];
     let i = 0;
 
-    for (; i < rank; i++) stars.push(<BsStarFill key={i} />);
-    for (; i < 5; i++) stars.push(<BsStar key={i} />);
+    if(hasHalfStar) {
+        for (; i < rank; i++) stars.push(<BsStarFill key={i} />);
+        stars.push(<BsStarHalf key={i} />);
+        for (; i < 4; i++) stars.push(<BsStar key={i} />);
+    } else {
+        for (; i < rank; i++) stars.push(<BsStarFill key={i} />);
+        for (; i < 5; i++) stars.push(<BsStar key={i} />);
+    }
 
     return (
         <div className="ranking col-4">
