@@ -9,6 +9,7 @@ import "./Register.css"
 const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server via environment variable
 
 function Register(props) {
+  const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,21 +26,36 @@ function Register(props) {
   }
 
   async function handleSubmit() {
-    const response = await fetch(`${server}users/register`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, email, password })
-    });
-    const data = await response.json();
+    setMsg(null);
+    setLoading(true);
+    const controller = new AbortController();
+    const timeoutID = setTimeout(() => controller.abort(), 10000); // Ten-second timer for the fetch call
 
-    if (!response.ok) {
-      console.log(data.error);
-      setMsg(data.error);
-    } else {
-      sessionStorage.setItem("user", JSON.stringify(data)); // Stores user in browser session storage
-      navigate(`/Profile/${username}`);
+    try {
+      const response = await fetch(`${server}users/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email, password }),
+        signal: controller.signal
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error);
+      } else {
+        clearTimeout(timeoutID); // Stop timer prematurely (if necessary)
+        sessionStorage.setItem("user", JSON.stringify(data)); // Stores user in browser session storage
+        navigate(`/Profile/${username}`);
+      }
+    } catch (error) {
+      clearTimeout(timeoutID); // Stop timer prematurely (if necessary)
+      console.log(error);
+
+      if (error.name === "AbortError") setMsg("Server took too long to respond. Please try again later."); // Slow connection
+      else if (error.name === "Error") setMsg(error.message); // Error sent from server
+      else if (error.message === "Failed to fetch") setMsg("Could not connect to server."); // Server is not running
+      else setMsg(`${error.message}.`); // All other errors
     }
-
   }
 
   return (
@@ -101,8 +117,16 @@ function Register(props) {
       </Modal.Body>
       <Modal.Footer>
         <div id="submit">
-          <Button variant="dark" onClick={handleSubmit}>
-            Submit
+          <Button variant="dark" onClick={handleSubmit} disabled={loading}>
+            {(loading) ? (
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            ) : (
+              <>
+                Submit
+              </>
+            )}
           </Button>
         </div>
       </Modal.Footer>

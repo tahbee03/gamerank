@@ -3,6 +3,7 @@ import Home from '../Home/Home.jsx';
 import Profile from '../Profile/Profile.jsx';
 import TopReviewers from '../TopReviewers/TopReviewers.jsx';
 import GamePage from '../GamePage/GamePage.jsx';
+import SearchPage from '../SearchPage/SearchPage.jsx';
 import NoMatch from '../NoMatch/NoMatch.jsx';
 import { Route, Routes } from 'react-router-dom';
 
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/Profile/:username" element={<Profile />} />
         <Route path="/TopReviewers" element={<TopReviewers />} />
         <Route path="/Games/:id" element={<GamePage />} />
+        <Route path="/Search" element={<SearchPage />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </>
