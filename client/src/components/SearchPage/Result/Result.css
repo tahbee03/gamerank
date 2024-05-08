@@ -1,0 +1,15 @@
+a.result.col-4 {
+  border: 1px white solid;
+  transform: scale(0.95);
+  color: #f5f5f5;
+  background-color: #1f1f1f;
+}
+
+a.result.col-4:hover {
+  color: #1f1f1f;
+  background-color: #f5f5f5;
+}
+
+a.result.col-4 * {
+  margin: 5px;
+}

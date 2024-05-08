@@ -12,10 +12,20 @@
 
 .search {
     display: flex;
+    position: relative;
 }
 
 .search-input {
     height: 2rem;
+}
+
+.search-input.focused {
+    outline: none;
+    box-shadow: 0px 0px 10px 5px #ebe770;
+}
+
+.search-input.focused.invalid-input {
+    box-shadow: 0px 0px 10px 5px red;
 }
 
 .search-btn {
@@ -25,12 +35,31 @@
     height: 2rem;
     width: 2rem;
     color: #f5f5f5;
-    cursor: pointer;
     transition: 0.25s;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
 }
 
 .search-btn:hover {
     color: #ebe770;
+}
+
+.search-btn:disabled {
+    color: gray;
+}
+
+.search-error {
+    position: absolute;
+    color: red;
+    top: 40px;
+    z-index: 100;
+    text-align: center;
+    background-color: #1f1f1f;
+    padding: 10px;
+}
+
+.search-error p {
+    margin: 0;
 }
 
 .buttons {
