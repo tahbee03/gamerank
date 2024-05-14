@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom"; // useLocation()
-import Navbar from "../Navbar/Navbar"; // <Navbar />
-import UserResults from "./UserResults/UserResults"; // <UserResults />
-import RankingResults from "./RankingResults/RankingResults"; // <RankingResults />
-import GameResults from "./GameResults/GameResults"; // <GameResults />
+import Navbar from "../../components/Navbar/Navbar"; // <Navbar />
+import UserResults from "../../components/UserResults/UserResults"; // <UserResults />
+import RankingResults from "../../components/RankingResults/RankingResults"; // <RankingResults />
+import GameResults from "../../components/GameResults/GameResults"; // <GameResults />
 
 export default function SearchPage() {
   const { search } = useLocation(); // Grab query parameters from URL

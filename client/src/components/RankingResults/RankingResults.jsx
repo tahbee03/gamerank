@@ -1,4 +1,4 @@
-import Result from "../Result/Result"; // <Result />
+import Result from "../Result/Result.jsx"; // <Result />
 import { useEffect, useState } from "react"; // useEffect(), useState()
 const server = import.meta.env.VITE_BACKEND_SERVER;
 

@@ -1,20 +1,14 @@
-import Navbar from '../Navbar/Navbar.jsx';
+import Navbar from '../../components/Navbar/Navbar.jsx';
 import ThemeProvider from 'react-bootstrap/ThemeProvider'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import defaultAvatar from '/default-avatar.jpg';
-// import { BsStar } from "react-icons/bs";
-// import { BsStarHalf } from "react-icons/bs";
-// import { BsStarFill } from "react-icons/bs";
 import { useState, useEffect } from 'react';
-import Review from '../Review/Review.jsx';
-import Followers from '../Followers/Followers.jsx';
-import Following from '../Following/Following.jsx';
-import DeleteAccount from '../DeleteAccount/DeleteAccount.jsx';
+import Review from '../../components/Review/Review.jsx';
+import Followers from '../../components/Followers/Followers.jsx';
+import Following from '../../components/Following/Following.jsx';
+import DeleteAccount from '../../components/DeleteAccount/DeleteAccount.jsx';
 import { useParams } from "react-router-dom";
-import StarRating from '../StarRating.jsx';
 import './Profile.css';
-import Ranking from '../Ranking/Ranking.jsx';
+import Ranking from '../../components/Ranking/Ranking.jsx';
 const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server via environment variable
 
 

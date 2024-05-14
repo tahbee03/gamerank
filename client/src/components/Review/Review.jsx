@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import "./Review.css"
-import StarRating from '../StarRating';
-import GameSearch from '../GameSearch/GameSearch';
+import StarRating from '../StarRating/StarRating.jsx';
+import GameSearch from '../GameSearch/GameSearch.jsx';
 import { Button, Modal, Form, InputGroup, ModalTitle } from "react-bootstrap";
 const server = import.meta.env.VITE_BACKEND_SERVER; // URL to back-end server via environment variable
 

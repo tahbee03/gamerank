@@ -1,5 +1,4 @@
 import "./SearchResult.css";
-import { Row, Col } from "react-bootstrap";
 
 function SearchResult({ id, name, image, handleClick }) {
   return (

@@ -1,8 +1,9 @@
-import Result from "../Result/Result"; // <Result />
+import Result from "../Result/Result.jsx"; // <Result />
 import { useEffect, useState } from "react"; // useEffect(), useState()
-const server = import.meta.env.VITE_BACKEND_SERVER;
+const api = import.meta.env.VITE_API_URL;
+const key = import.meta.env.VITE_API_KEY;
 
-export default function UserResults({ input }) {
+export default function GameResults({ input }) {
   const [loading, setLoading] = useState(false); // Loading state for component
   const [data, setData] = useState(null); // Variable to hold fetched data
 
@@ -10,17 +11,17 @@ export default function UserResults({ input }) {
     async function fetchData() {
       try {
         setLoading(true);
-        const response = await fetch(`${server}users`);
+        const response = await fetch(`${api}games?key=${key}&search=${input}`);
         const data = await response.json();
 
-        if (response.ok) setData(data.filter(u => u.username.search(input) !== -1));
+        if (response.ok) setData(data.results.slice(0, 10)); // Return the top ten results
         setLoading(false);
       } catch (error) {
         console.log(error);
       }
     }
 
-    fetchData(); // Fetch users from back-end
+    fetchData(); // Fetch games from API
   }, []);
 
   return (
@@ -34,22 +35,22 @@ export default function UserResults({ input }) {
           {(data) ? (
             <div className="row">
               {(data.length === 0) && (
-                <p>No users match your search.</p>
+                <p>No games match your search.</p>
               )}
               {(data.length > 0) && (
-                data.map(u => (
+                data.map(g => (
                   <Result
-                    key={u._id}
-                    type={"user"}
-                    heading={u.username}
-                    subheading={`${u.reviews} review${(u.reviews === 1) ? "" : "s"}`}
-                    link={`/Profile/${u.username}`}
+                    key={g.id}
+                    type={"game"}
+                    heading={g.name}
+                    subheading={`[${g.id}]`}
+                    link={`/Games/${g.id}`}
                   />
                 ))
               )}
             </div>
           ) : (
-            <p>Users could not be loaded.</p>
+            <p>Games could not be loaded.</p>
           )}
         </>
       )}

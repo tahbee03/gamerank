@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { ModalTitle } from "react-bootstrap";
 import React from "react";
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './Following.css';
 import { useParams } from "react-router-dom";
@@ -12,7 +11,7 @@ export default function Following(props) {
     const { username } = useParams();
     const [following, setFollowing] = useState([]);
     const [user, setUser] = useState(null);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     // Fetch user's data to load on page
     useEffect(() => {
@@ -50,36 +49,36 @@ export default function Following(props) {
 
     return (
         <Modal
-        {...props}
-        size="md"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
+            {...props}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
         >
-        <Modal.Header closeButton>
-            <ModalTitle>
-                Following
-            </ModalTitle>
-        </Modal.Header>
-        <Modal.Body>
-        {(following.length == 0) && (
-            <p>No following!</p>
-        )}
-        {(following.length > 0) && (
-            <div>
-                {following.map(following => (
-                <React.Fragment key={following._id}>
-                <span 
-                    onClick={() => { navigate(`/Profile/${following.username}`); window.location.reload(); }}
-                    className="following-clickable"
-                >
-                    {following.username}
-                </span>
-                <br />
-                </React.Fragment>
-                ))}
-            </div>
-        )}
-        </Modal.Body>
+            <Modal.Header closeButton>
+                <ModalTitle>
+                    Following
+                </ModalTitle>
+            </Modal.Header>
+            <Modal.Body>
+                {(following.length == 0) && (
+                    <p>No following!</p>
+                )}
+                {(following.length > 0) && (
+                    <div>
+                        {following.map(following => (
+                            <React.Fragment key={following._id}>
+                                <span
+                                    onClick={() => { navigate(`/Profile/${following.username}`); window.location.reload(); }}
+                                    className="following-clickable"
+                                >
+                                    {following.username}
+                                </span>
+                                <br />
+                            </React.Fragment>
+                        ))}
+                    </div>
+                )}
+            </Modal.Body>
         </Modal>
     );
 }

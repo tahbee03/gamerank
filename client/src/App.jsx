@@ -1,10 +1,10 @@
 import './App.css';
-import Home from '../Home/Home.jsx';
-import Profile from '../Profile/Profile.jsx';
-import TopReviewers from '../TopReviewers/TopReviewers.jsx';
-import GamePage from '../GamePage/GamePage.jsx';
-import SearchPage from '../SearchPage/SearchPage.jsx';
-import NoMatch from '../NoMatch/NoMatch.jsx';
+import Home from './pages/Home/Home.jsx';
+import Profile from './pages/Profile/Profile.jsx';
+import TopReviewers from './pages/TopReviewers/TopReviewers.jsx';
+import GamePage from './pages/GamePage/GamePage.jsx';
+import SearchPage from './pages/SearchPage/SearchPage.jsx';
+import NoMatch from './pages/NoMatch/NoMatch.jsx';
 import { Route, Routes } from 'react-router-dom';
 
 

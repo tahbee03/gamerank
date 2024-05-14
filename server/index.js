@@ -23,16 +23,12 @@ app.get("/", (req, res) => {
     res.send("Welcome to Gamerank API!");
 });
 
-// app.listen(4000, () => {
-//     console.log("Running back-end server on port 4000...");
-// });
-
 // Connect to database
 mongoose.connect(process.env.VITE_MONGO_URI)
     .then(() => {
         console.log("Connected to database!");
 
-        if(process.env.VITE_PORT) {
+        if (process.env.VITE_PORT) {
             // Listen for requests (after connecting to database)
             app.listen(process.env.VITE_PORT, () => {
                 console.log(`Running back-end server on port ${process.env.VITE_PORT}...`);
