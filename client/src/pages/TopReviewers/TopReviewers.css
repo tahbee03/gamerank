@@ -1,4 +1,25 @@
 .user {
-    color: lightblue;
+    color: #c882ed;
     cursor: pointer;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.user:hover {
+    color: #ebe770; 
+}
+
+.top-reviewers-title, .top-reviewers-list{
+    color: #ebe770;
+    border-width: 10em;
+    border-color: #ebe770;
+    border: solid;
+    border-radius: 30px;
+    margin: 15px 0px;
+    padding: 10px 0px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.top-reviewers-list:hover {
+    background-color: #5866e7; 
+    transform: scale(1.05); 
 }
