@@ -13,14 +13,14 @@ export default function Ranking({ id, author, gameID, picurl, title, rank, date,
     let i = 0;
 
     if (hasHalfStar) {
-        for (; i < rank; i++) stars.push(<BsStarFill key={i} />);
+        for (; i < Math.floor(rank); i++) stars.push(<BsStarFill key={i} />);
         stars.push(<BsStarHalf key={i} />);
-        for (; i < 4; i++) stars.push(<BsStar key={i} />);
+        i++;
     } else {
         for (; i < rank; i++) stars.push(<BsStarFill key={i} />);
-        for (; i < 5; i++) stars.push(<BsStar key={i} />);
     }
-
+    
+    for (; i < 5; i++) stars.push(<BsStar key={i} />);
     async function handleDelete() {
         setLoadingDelete(true);
         try {
